@@ -372,8 +372,8 @@ Plug 'tpope/vim-tbone'
         \ ]
 
         let g:startify_bookmarks = [
-            \ { 'c': '~/.config/nvim/init.vim' },
-            \ { 'z': '~/.zshrc' },
+            \ { 'c': '~/dotfiles/init.vim' },
+            \ { 'z': '~/dotfiles/.zshrc' },
             \ { 'l': '~/.config/nvim/coc-settings.json'},
         \ ]
 

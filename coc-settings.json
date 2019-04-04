@@ -1,0 +1,31 @@
+{
+  "languageserver": {
+    "ccls": {
+      "command": "/home/logan/apps/ccls/Release/ccls",
+      "filetypes": ["c", "cpp"],
+      "rootPatterns": [".ccls", "tags","compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory":".ccls-cache"
+        }
+      }
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args":[],
+      "filetypes": [ "markdown"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes":["sh"], 
+      "ignoredRootPaths":["~"]
+    }
+  },
+  "pyls.plugins.pycodestyle.enabled": false,
+  "pyls.commandPath": "/home/logan/python-virtual-environments/nvim3/bin/pyls",
+  "coc.source.buffer.enable": false,
+  "coc.source.around.enable":false
+  "_comment": "IMPORTANT! COPY TO /dotfiles!"
+}
+
