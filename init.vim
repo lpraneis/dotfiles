@@ -33,10 +33,11 @@ let g:lightline = {
       \      'left':[ ['mode', 'paste' ], 
       \               [ 'gitbranch', 'readonly', 'filename','modified']
       \               ],
-      \      'right':[['percent'],['fileformat', 'fileencoding', 'filetype' ] ]
+      \      'right':[['percent'],['fileformat', 'fileencoding', 'filetype' ], ['cocstatus'] ]
       \  },
       \  'component_function': {
       \  'gitbranch': 'fugitive#head',
+      \  'cocstatus': 'coc#status', 
       \  },
       \  'component_type': {
       \     'linter_checking': 'left',
@@ -51,7 +52,8 @@ let g:lightline = {
 "Syntax - COC {{{
 "
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " if hidden not set, TextEdit might fail.
 set hidden
@@ -149,7 +151,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocCommand<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
