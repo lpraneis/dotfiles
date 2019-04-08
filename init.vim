@@ -256,6 +256,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-obsession'
 
 " }}}
+"
+" }}}
 
 "#####################
 "       Others
@@ -272,8 +274,22 @@ map <leader>mp :MarkdownPreview
 Plug 'mbbill/undotree'
 nnoremap <F2> :UndotreeToggle<cr>
 
-"Dark powered plguin for fuzzy interfaces
+"netrw config
+" absolute width of netrw window
+nnoremap <F3> :Lexplore <cr>
+let g:netrw_winsize = -28
 
+" do not display info on the top of window
+let g:netrw_banner = 0
+
+" tree-view
+let g:netrw_liststyle = 3
+
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" use the previous window to open file
+let g:netrw_browse_split = 4
 
 "fuzzy finder {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
