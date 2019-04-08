@@ -262,6 +262,7 @@ Plug 'tpope/vim-obsession'
 "#####################
 "       Others
 "#####################
+"{{{
 
 "Easy tables in vim! (note taking, etc)
 Plug 'dhruvasagar/vim-table-mode'
@@ -290,6 +291,7 @@ let g:netrw_sort_sequence = '[\/]$,*'
 
 " use the previous window to open file
 let g:netrw_browse_split = 4
+"}}}
 
 "fuzzy finder {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
