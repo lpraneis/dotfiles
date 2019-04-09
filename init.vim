@@ -55,6 +55,7 @@ let g:lightline = {
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
+
 " if hidden not set, TextEdit might fail.
 set hidden
 " Better display for messages
@@ -81,6 +82,10 @@ endfunction
 
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" Scroll floating window
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 
 "use <c-;> for snippets"
 imap <C-e> <Plug>(coc-snippets-expand)
