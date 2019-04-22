@@ -23,6 +23,7 @@
     }
   },
   "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": "/home/logan/python-virtual-environments/nvim3/pylint",
   "python.sortImports.path": "/home/logan/python-virtual-environments/nvim3/bin/isort",
   "python.venvPath": "/home/logan/python-virtual-environments/",
   "python.jediEnabled": false,
