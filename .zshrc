@@ -97,6 +97,8 @@ prompt_context(){}
 umask 026
 
 
+# USE POSIX time command
+TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 #autosuggestions configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -272,6 +272,10 @@ Plug 'tpope/vim-obsession'
 "Easy tables in vim! (note taking, etc)
 Plug 'dhruvasagar/vim-table-mode'
 
+" R Markdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
 "Markdown Instant Preview --- TEST
 Plug 'iamcco/markdown-preview.vim'
 let g:mkdp_refresh_slow = 1 "sets it to only refresh on leaving insert mode or on write
@@ -481,9 +485,6 @@ call plug#end()
 " \})
 syntax on
 set termguicolors
-"Ayu
-"let ayucolor="mirage"
-"colorscheme ayu
 "
 "Vim One
 set background=dark
