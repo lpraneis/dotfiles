@@ -22,10 +22,11 @@
       "ignoredRootPaths":["~"]
     }
   },
-  "pyls.plugins.pycodestyle.enabled": false,
-  "pyls.commandPath": "/home/logan/python-virtual-environments/nvim3/bin/pyls",
+  "python.linting.pylintEnabled": true,
+  "python.sortImports.path": "/home/logan/python-virtual-environments/nvim3/bin/isort",
+  "python.venvPath": "/home/logan/python-virtual-environments/",
+  "python.jediEnabled": false,
   "coc.source.buffer.enable": false,
   "coc.source.around.enable":false
-  "_comment": "IMPORTANT! COPY TO /dotfiles!"
 }
 
