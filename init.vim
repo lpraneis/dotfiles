@@ -274,6 +274,7 @@ Plug 'dhruvasagar/vim-table-mode'
 
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
+let g:pandoc#folding#fastfolds = 1
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 "Markdown Instant Preview --- TEST
