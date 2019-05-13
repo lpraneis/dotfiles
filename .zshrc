@@ -136,6 +136,7 @@ cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir
 py() { env=$(find /home/logan/python-virtual-environments -maxdepth 1 -type d | fzf +m) && 
    source "$env/bin/activate"}
 
+
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # OPAM configuration
