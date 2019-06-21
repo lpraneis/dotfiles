@@ -205,6 +205,8 @@ let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/pytho
 "TOML syntax
 Plug 'cespare/vim-toml'
 
+Plug 'hashivim/vim-terraform'
+
 "}}}
 
 "{{{ Other Syntax
