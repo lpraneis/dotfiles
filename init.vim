@@ -55,6 +55,10 @@ let g:lightline = {
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+
+
 
 " if hidden not set, TextEdit might fail.
 set hidden
@@ -478,7 +482,7 @@ command! Vt vsplit | terminal
 "Filetype Commands: {{{
 autocmd Filetype python setlocal expandtab 
 autocmd Filetype ocaml setlocal shiftwidth=2 softtabstop=2
-autocmd Filetype c setlocal foldmethod=syntax
+autocmd Filetype c,cpp setlocal foldmethod=syntax
 "}}}
 
 call plug#end()
