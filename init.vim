@@ -55,8 +55,7 @@ let g:lightline = {
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
+Plug 'rhysd/vim-clang-format'
 
 
 
