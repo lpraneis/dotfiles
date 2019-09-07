@@ -96,6 +96,9 @@ DEFAULT_USER='logan'
 prompt_context(){}
 umask 026
 
+# Allow Alt+. to have last command args in vicmd mode
+bindkey "^[." insert-last-word
+
 
 # USE POSIX time command
 TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
