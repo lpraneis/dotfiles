@@ -23,7 +23,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     let mapleader = ',' "setting a leader to ,
 "}}}
 
-
 "Lightline: {{{
 Plug 'itchyny/lightline.vim'
 " Plug 'maximbaz/lightline-ale'
@@ -53,11 +52,8 @@ let g:lightline = {
 "
 
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-Plug 'rhysd/vim-clang-format'
-
-
 
 " if hidden not set, TextEdit might fail.
 set hidden
@@ -91,7 +87,6 @@ nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
 nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 
 "use <c-;> for snippets"
-Plug 'honza/vim-snippets'
 imap <C-e> <Plug>(coc-snippets-expand)
 vmap <C-e> <Plug>(coc-snippets-select)
 
@@ -203,12 +198,9 @@ nn xx x
 
 let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
 let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python'
-"python
+"python virtual environments :q
 "
-"TOML syntax
-Plug 'cespare/vim-toml'
-
-Plug 'hashivim/vim-terraform'
+"
 
 "}}}
 
@@ -230,12 +222,18 @@ let g:vimtex_enabled = 1
 let g:vimtex_fold_enabled = 1
 "Vimtex Call FZF shortcut:
 nnoremap <leader>lt :call vimtex#fzf#run()<cr>
-autocmd FileType tex setlocal spell
-autocmd FileType plaintex setlocal spell
-autocmd FileType markdown setlocal spell
 
 "Automatically correct the last word
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+
+"TOML syntax
+Plug 'cespare/vim-toml'
+
+" Terraform Syntax
+Plug 'hashivim/vim-terraform'
+" Vim Snippets Support
+Plug 'honza/vim-snippets'
 
 "GDB Integration {{{
 Plug 'sakhnik/nvim-gdb', { 'branch': 'legacy' }
@@ -256,7 +254,6 @@ Plug 'tpope/vim-rhubarb'
 let g:github_enterprise_urls = ['https://github.umn.edu']
 
 Plug 'tpope/vim-commentary'
-autocmd FileType ocaml setlocal commentstring=(*\%s\*)
 
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-vinegar'
@@ -278,6 +275,9 @@ Plug 'tpope/vim-obsession'
 "Easy tables in vim! (note taking, etc)
 Plug 'dhruvasagar/vim-table-mode'
 
+" Clang auto-formatter
+Plug 'rhysd/vim-clang-format'
+
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
 let g:pandoc#folding#fastfolds = 1
@@ -290,6 +290,14 @@ map <leader>mp :MarkdownPreview
 
 Plug 'mbbill/undotree'
 nnoremap <F2> :UndotreeToggle<cr>
+
+
+Plug 'kkoomen/vim-doge'
+let g:doge_doc_standard_python='google'
+let g:doge_mapping='<Leader>g'
+let g:doge_mapping_comment_jump_forward='<C-e>'
+let g:doge_mapping_comment_jump_forward='<C-r>'
+
 
 "netrw config
 " absolute width of netrw window
@@ -315,9 +323,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-quickfix'
 
 "Hide status line for fzf in terminal buffer
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " Map ,e... to edit in new window, split, vertical, tab, from current
 " directory.
@@ -363,9 +368,10 @@ let g:rust_fold = 1
 "}}}
 
 
-"Themes
+"Themes {{{
 " Plug 'rakr/vim-one'
 Plug 'laggardkernel/vim-one'
+"}}}
 
 "Buffers {{{
 Plug 'qpkorr/vim-bufkill'
@@ -481,7 +487,16 @@ command! Vt vsplit | terminal
 "Filetype Commands: {{{
 autocmd Filetype python setlocal expandtab 
 autocmd Filetype ocaml setlocal shiftwidth=2 softtabstop=2
-autocmd Filetype c,cpp setlocal foldmethod=syntax
+autocmd Filetype c,cpp,cc setlocal foldmethod=syntax
+
+autocmd FileType ocaml setlocal commentstring=(*\%s\*)
+autocmd FileType tex setlocal spell
+autocmd FileType plaintex setlocal spell
+autocmd FileType markdown setlocal spell
+
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 "}}}
 
 call plug#end()
