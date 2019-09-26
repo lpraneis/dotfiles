@@ -492,7 +492,7 @@ autocmd Filetype c,cpp,cc setlocal foldmethod=syntax
 autocmd FileType ocaml setlocal commentstring=(*\%s\*)
 autocmd FileType tex setlocal spell
 autocmd FileType plaintex setlocal spell
-autocmd FileType markdown setlocal spell
+autocmd FileType markdown setlocal spell expandtab softtabstop=4 shiftwidth=4
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
