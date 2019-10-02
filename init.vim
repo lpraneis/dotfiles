@@ -287,6 +287,8 @@ Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'iamcco/markdown-preview.vim'
 let g:mkdp_refresh_slow = 1 "sets it to only refresh on leaving insert mode or on write
 map <leader>mp :MarkdownPreview
+map <leader>pc :Pandoc pdf --template eisvogel --listings<CR>
+map <leader>pv :!evince %:p:r.pdf<CR>
 
 Plug 'mbbill/undotree'
 nnoremap <F2> :UndotreeToggle<cr>
