@@ -29,33 +29,12 @@ TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 
 # FUNCTIONS
 
-function pdfextract()
-{
- # this function uses 3 arguments:
-    #     $1 is the first page of the range to extract
-    #     $2 is the last page of the range to extract
-    #     $3 is the input file
-    #     output file will be named "inputfile_pXX-pYY.pdf"
-    if [ $# -lt 3 ]; then
-      echo "USAGE"
-      echo "pdfextract first_page last_page input_file [output_file]"
-    elif [ $# -eq 3 ]; then
-    gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
-       -dFirstPage=${1} \
-       -dLastPage=${2} \
-       -sOutputFile=${3%.pdf}_p${1}-p${2}.pdf \
-       ${3}
-    else 
-    gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
-       -dFirstPage=${1} \
-       -dLastPage=${2} \
-       -sOutputFile=${4} \
-       ${3}
-    fi
-     }
 
 #source aliases
 source ~/dotfiles/aliases.zsh
+
+# source functions
+source ~/dotfiles/functions.zsh
 
 # Automatically add ssh keys
 if [ -z "$SSH_AUTH_SOCK" ]; then
