@@ -27,8 +27,19 @@ bindkey "^[." insert-last-word
 TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 #autosuggestions configuration
 
-# FUNCTIONS
+# Pyenv
+PYENV=/home/logan/.pyenv
+export PATH="/home/logan/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+source $PYENV/completions/pyenv.zsh
 
+
+# Zsh Autocompletions
+fpath=(/home/logan/apps/zsh-completions/src $fpath)
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd completion)
 
 #source aliases
 source ~/dotfiles/aliases.zsh
@@ -49,5 +60,6 @@ alias config='/usr/bin/git --git-dir=/home/logan/.cfg/ --work-tree=/home/logan'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(starship init zsh)"
+
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
