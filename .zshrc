@@ -36,7 +36,7 @@ TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 
 # Pyenv
 # PYENV=/home/logan/.pyenv
-export PATH="/home/logan/.pyenv/bin:$PATH"
+# export PATH="/home/logan/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # source $PYENV/completions/pyenv.zsh

@@ -61,7 +61,6 @@ Plug 'rhysd/vim-clang-format'
 
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
-
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 
@@ -188,8 +187,9 @@ set splitright
 set noshowmode
 
 "python virtual environments
-let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
-let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python'
+let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/activate'
+let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/activate'
+
 
 " Allow git push to umn github
 let g:github_enterprise_urls = ['https://github.umn.edu']

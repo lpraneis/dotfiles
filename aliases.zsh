@@ -10,5 +10,7 @@ alias gp="git push"
 alias ls="ls --color=tty"
 
 cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir"}
+py() { env=$(find /home/logan/python-virtual-environments -maxdepth 1 -type d | fzf +m) &&
+    source "$env/bin/activate"}
 
 
