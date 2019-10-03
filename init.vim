@@ -127,6 +127,9 @@ set wildmenu
 " Incremental search results
 set incsearch
 
+"Show column
+set ruler
+
 " Show partial command as it's being typed
 set showcmd
 " Centralize BAckups, Swapfiles, and Undo History
@@ -237,7 +240,7 @@ if s:has_plugin('vim-airline')
   let g:airline_right_alt_sep = ''
   let g:airline#extensions#default#layout = [
         \ [ 'a', 'c' ],
-        \ [ 'x', 'error', 'warning' ]
+        \ [ 'z', 'x', 'error', 'warning' ]
         \ ]
 endif
 
