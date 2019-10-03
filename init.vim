@@ -1,62 +1,176 @@
+"Plugins {{{
+
+" Vim Plugged
 call plug#begin('~/.local/share/nvim/plugged')
 
-" General {{{
-    set t_8b=^[[48;2;%lu;%lu;%lum
-    set t_8f=^[[38;2;%lu;%lu;%lum
-    set runtimepath+=~/.vim,~/.vim/after
-    set packpath+=~/.vim
-    set path+=.,/usr/local/include,/usr/include,/usr/include/x86_64-linux-gnu/
-    set guicursor=
-    set shell=/usr/bin/zsh
-    set tabstop=4
-    set shiftwidth=2
-    set expandtab
-    set number
-    set showcmd
-    set showmatch
-    set cursorline
-    set wildmenu
-    set incsearch
-    set autoread " detect when a file is changed
-    set rnu " enable relative line numbers
-    syntax enable
-    let mapleader = ',' "setting a leader to ,
-"}}}
+" Lightline
+" Plug 'itchyny/lightline.vim'
 
-"Lightline: {{{
-Plug 'itchyny/lightline.vim'
-" Plug 'maximbaz/lightline-ale'
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \      'left':[ ['mode', 'paste' ], 
-      \               [ 'gitbranch', 'readonly', 'filename','modified']
-      \               ],
-      \      'right':[['percent'],['fileformat', 'fileencoding', 'filetype' ], ['cocstatus'] ]
-      \  },
-      \  'component_function': {
-      \  'gitbranch': 'fugitive#head',
-      \  'cocstatus': 'coc#status', 
-      \  },
-      \  'component_type': {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \    },
-      \  }
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-"}}}
 
-"Syntax - COC {{{
-"
+"Bufexplorer
+Plug 'jlanzarotta/bufexplorer'
 
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Vim One Theme
+Plug 'laggardkernel/vim-one'
+
+" Coc Nvim
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-" if hidden not set, TextEdit might fail.
+"Latex Plugin
+Plug 'lervag/vimtex'
+
+"TOML syntax
+Plug 'cespare/vim-toml'
+
+" Vim Snippets Support
+Plug 'honza/vim-snippets'
+
+"Sensible Defaults! - Tim Pope
+Plug 'tpope/vim-sensible'
+
+" Add endifs etc. automaticly
+Plug 'tpope/vim-endwise'
+
+"Dispatch --- asynchonous make - Tim Pope
+Plug 'tpope/vim-dispatch'
+
+"Git Plugin
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' 
+
+Plug 'tpope/vim-commentary'
+
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-obsession'
+
+
+"Easy tables in vim! (note taking, etc)
+Plug 'dhruvasagar/vim-table-mode'
+
+" Clang auto-formatter
+Plug 'rhysd/vim-clang-format'
+
+" R Markdown
+Plug 'vim-pandoc/vim-pandoc'
+
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
+
+Plug 'mbbill/undotree'
+"Markdown Instant Preview --- TEST
+Plug 'iamcco/markdown-preview.vim'
+
+" Documentation Generator 
+Plug 'kkoomen/vim-doge'
+
+"fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'fszymanski/fzf-quickfix'
+
+"Python folding
+Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
+
+
+" Buffers
+Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-tbone'
+
+" Fancy Startup Screen
+Plug 'mhinz/vim-startify'
+
+
+call plug#end()
+
+function! s:has_plugin(plugin)
+  let lookup = 'g:plugs["' . a:plugin . '"]'
+  return exists(lookup)
+endfunction
+"}}}
+
+" General Configuration {{{
+    " Enable editing of binary files
+set binary
+
+" Tmux colors
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
+
+" Set shell to zsh
+set shell=/usr/bin/zsh
+
+" set runtimepath+=~/.vim,~/.vim/after
+" set packpath+=~/.vim
+set path+=.,/usr/local/include,/usr/include,/usr/include/x86_64-linux-gnu/
+
+" Briefly move cursor to matching brace
+set showmatch
+
+" Lazyredraw attempts to solve lag by reducing
+" the amount of processing required. Any action
+" that is not typed will not cause screen to redraw
+set lazyredraw
+
+"When 'wildmenu' is on, command-line
+"completion operates in an enhanced mode.
+set wildmenu
+
+" Incremental search results
+set incsearch
+
+" Show partial command as it's being typed
+set showcmd
+" Centralize BAckups, Swapfiles, and Undo History
+set backupdir=~/.config/nvim/backups
+
+" Don't create backups when editing files in certain dirs
+set backupskip=/tmp/*
+
+" Don't add extra space after ., !, etc. when joining
+set nojoinspaces
+
+
+" Uses spaces not tabs
+set expandtab
+set tabstop=4
+set shiftwidth=2
+
+" Highlight current line
+set cursorline
+" detect when a file is changed
+set autoread 
+
+" enable relative line numbers
+set number
+set rnu 
+
+let mapleader = ',' "setting a leader to ,
+let maplocalleader='\'
+
+" Enable Syntax
+syntax enable
+syntax on
+" Enable 24 bit color
+set termguicolors
+
+"Opening new file in buffer casues file to be hidden instead of closed 
 set hidden
+"
+"Vim One Color Config
+set background=dark
+let g:one_allow_italics = 1
+colorscheme one
+
 " Better display for messages
 set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
@@ -66,8 +180,70 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Splits open bottom right, more natural
+set splitbelow
+set splitright
+
+" Don't display current mode, airline has it
+set noshowmode
+
+"python virtual environments
+let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
+let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python'
+
+" Allow git push to umn github
+let g:github_enterprise_urls = ['https://github.umn.edu']
+
+"}}}
+
+"Lightline: {{{
+if s:has_plugin('lightline.vim')
+  let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'active': {
+        \      'left':[ ['mode', 'paste' ], 
+        \               [ 'gitbranch', 'readonly', 'filename','modified']
+        \               ],
+        \      'right':[['percent'],['fileformat', 'fileencoding', 'filetype' ], ['cocstatus'] ]
+        \  },
+        \  'component_function': {
+        \  'gitbranch': 'fugitive#head',
+        \  'cocstatus': 'coc#status', 
+        \  },
+        \  'component_type': {
+        \     'linter_checking': 'left',
+        \     'linter_warnings': 'warning',
+        \     'linter_errors': 'error',
+        \     'linter_ok': 'left',
+        \    },
+        \  }
+endif
+
+if s:has_plugin('vim-airline')
+  let g:airline_theme='one'
+  let g:airline#extensions#branch#enabled = 1
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tmuxline#enabled = 0
+  let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+  let g:airline#extensions#tabline#buffers_label = ''
+  let g:airline#extensions#tabline#fnamemod = ':t' " Show the filename
+  let g:airline#extensions#tabline#fnamecollapse = 0
+  let g:airline#extensions#tabline#show_tab_nr = 0
+  let g:airline#extensions#tabline#buffer_nr_show = 0
+  let g:airline#extensions#tabline#show_close_button = 0
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline#extensions#default#layout = [
+        \ [ 'a', 'c' ],
+        \ [ 'x', 'error', 'warning' ]
+        \ ]
+endif
+
+"}}}
+
+" Coc Nvim Configuration {{{
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -168,6 +344,10 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 autocmd CompleteDone * pclose!
 
+" Airline Integration
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
 
 "C shortcuts
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance')<cr>
@@ -196,23 +376,18 @@ nn <silent> xv :call CocLocations('ccls','$ccls/vars')<cr>
 nn <silent> xV :call CocLocations('ccls','$ccls/vars',{'kind':1})<cr>
 nn xx x
 
-let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
-let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python'
-"python virtual environments :q
 "
 "
 
 "}}}
 
-"{{{ Other Syntax
+"{{{ Other Syntax Configuration
 "rust syntax
-" Plug 'rust-lang/rust.vim'
+
 " These two commands make the tags by rusty tags vi
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
-"Latex Plugin
-Plug 'lervag/vimtex'
 " let g:vimtex_compiler_progname= 'nvr'
 let g:vimtex_compiler_progname= 'latexmk'
 " let g:vimtex_compiler_latexmk = {
@@ -220,90 +395,91 @@ let g:vimtex_compiler_progname= 'latexmk'
 "     \}
 let g:vimtex_enabled = 1
 let g:vimtex_fold_enabled = 1
+
 "Vimtex Call FZF shortcut:
-nnoremap <leader>lt :call vimtex#fzf#run()<cr>
 
 "Automatically correct the last word
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 
-"TOML syntax
-Plug 'cespare/vim-toml'
-
-" Terraform Syntax
-Plug 'hashivim/vim-terraform'
-" Vim Snippets Support
-Plug 'honza/vim-snippets'
-
-"GDB Integration {{{
-Plug 'sakhnik/nvim-gdb', { 'branch': 'legacy' }
-" Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
-"}}}
-
-"Tim Pope {{{
-"Sensible Defaults! - Tim Pope
-Plug 'tpope/vim-sensible'
-
-" Add endifs etc. automaticly
-Plug 'tpope/vim-endwise'
-"Dispatch --- asynchonous make - Tim Pope
-Plug 'tpope/vim-dispatch'
-"Git Plugin
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb' 
-let g:github_enterprise_urls = ['https://github.umn.edu']
-
-Plug 'tpope/vim-commentary'
-
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-obsession'
 
 " }}}
-"
-" }}}
 
-"#####################
-"       Others
-"#####################
-"{{{
-
-"Easy tables in vim! (note taking, etc)
-Plug 'dhruvasagar/vim-table-mode'
-
-" Clang auto-formatter
-Plug 'rhysd/vim-clang-format'
-
-" R Markdown
-Plug 'vim-pandoc/vim-pandoc'
-let g:pandoc#folding#fastfolds = 1
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-rmarkdown'
-"Markdown Instant Preview --- TEST
-Plug 'iamcco/markdown-preview.vim'
-let g:mkdp_refresh_slow = 1 "sets it to only refresh on leaving insert mode or on write
+" General Keybindings {{{
 map <leader>mp :MarkdownPreview
 map <leader>pc :Pandoc pdf --template eisvogel --listings<CR>
 map <leader>pv :!evince %:p:r.pdf<CR>
 
-Plug 'mbbill/undotree'
-nnoremap <F2> :UndotreeToggle<cr>
+" Map ,e... to edit in new window, split, vertical, tab, from current
+" directory.
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-
-Plug 'kkoomen/vim-doge'
-let g:doge_doc_standard_python='google'
-let g:doge_mapping='<Leader>g'
-let g:doge_mapping_comment_jump_forward='<C-e>'
-let g:doge_mapping_comment_jump_forward='<C-r>'
-
-
-"netrw config
-" absolute width of netrw window
+" Open Netrw in Left Split
 nnoremap <F3> :Lexplore <cr>
+
+" Switch buffers
+nnoremap <silent>H :silent bp<CR>
+nnoremap <silent>L :silent bn<CR>
+
+"keybindings for buffer transversal
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+
+"keybinding for split navigations
+map <silent> <C-h> :call functions#WinMove('h')<cr>
+map <silent> <C-j> :call functions#WinMove('j')<cr>
+map <silent> <C-k> :call functions#WinMove('k')<cr>
+map <silent> <C-l> :call functions#WinMove('l')<cr>
+
+"keybinding to use F8 to open file under cursor in vertical split!
+map <leader>v :vertical wincmd f<CR>
+map <leader>h :wincmd f<CR>
+
+"keybinding for active file directory completion
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+"Keybinding to clear highlighting after search
+nnoremap <leader>c :nohl<CR>
+
+"Keybindings to go with ctags!
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+set tags+=tags;$HOME
+
+
+
+"Keybindings for 'exiting terminal' "
+tnoremap <Esc> <C-\><C-n>
+
+"}}}
+
+" Plugin Config {{{
+
+" Markdown Preview Configuration
+let g:mkdp_refresh_slow = 1 "sets it to only refresh on leaving insert mode or on write
+
+if s:has_plugin('undotree') 
+  nnoremap <F2> :UndotreeToggle<cr>
+endif
+
+" Doge Documentation {{{
+if s:has_plugin('vim-doge')
+  let g:doge_doc_standard_python='google'
+  let g:doge_mapping='<Leader>g'
+  let g:doge_mapping_comment_jump_forward='<C-e>'
+  let g:doge_mapping_comment_jump_forward='<C-r>'
+endif
+" }}}
+
+"netrw config {{{ 
+
+" absolute width of netrw window
 let g:netrw_winsize = -28
 
 " do not display info on the top of window
@@ -319,71 +495,53 @@ let g:netrw_sort_sequence = '[\/]$,*'
 let g:netrw_browse_split = 4
 "}}}
 
-"fuzzy finder {{{
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'fszymanski/fzf-quickfix'
+" Folding {{{
 
-"Hide status line for fzf in terminal buffer
-
-" Map ,e... to edit in new window, split, vertical, tab, from current
-" directory.
-map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
-"}}}
-
-"#####################
-"       Folding
-"#####################
-"{{{
-" FOLD SETTING INSIDE VIMRC
-function SetFold()
-  set foldmethod=marker   
-  set foldlevelstart=99   
-  set foldnestmax=10   
-  set nofoldenable   
-  set foldlevel=0
-endfunction
-
-augroup FOLDVIM
-  autocmd!
-  autocmd FileType vim  call SetFold()
-augroup END
-"
-"Python folding
-Plug 'tmhedberg/SimpylFold'
+" Allow Fast folds in Pandoc
+let g:pandoc#folding#fastfolds = 1
 "
 
 "Fast Folding
-Plug 'Konfekt/FastFold'
-nmap zuz <Plug>(FastFoldUpdate)
-let g:fastfold_savehook = 1
-let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C' ]
-let g:fastfold_fold_movement_commands = [']z', '[Z', 'zj', 'zk']
+if s:has_plugin('FastFold')
+  nmap zuz <Plug>(FastFoldUpdate)
+  let g:fastfold_savehook = 1
+  let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C' ]
+  let g:fastfold_fold_movement_commands = [']z', '[Z', 'zj', 'zk']
 
-let g:markdown_folding = 1
-let g:tex_fold_enabled =1 
-let g:rust_fold = 1
-
-"}}}
-
-
-"Themes {{{
-" Plug 'rakr/vim-one'
-Plug 'laggardkernel/vim-one'
-"}}}
-
-"Buffers {{{
-Plug 'qpkorr/vim-bufkill'
-Plug 'tpope/vim-tbone'
+  let g:markdown_folding = 1
+  let g:tex_fold_enabled =1 
+  let g:rust_fold = 1
+endif
 
 "}}}
+
+if s:has_plugin('fzf.vim')
+  "Keybindings for fzf (FZF)
+  nnoremap <leader>b :Buffers<cr>
+  nnoremap <leader>m :Marks<cr>
+  nnoremap <leader>w :Windows<cr>
+  nnoremap <leader>t :Tags<cr>
+  nnoremap <leader>f :Files<cr>
+
+  nnoremap <leader>lt :call vimtex#fzf#run()<cr>
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+endif
+
+if s:has_plugin('bufexplorer')
+
+  let g:bufExplorerDisableDefaultKeyMapping =1 
+  let g:bufExplorerShowNoName=1
+  nnoremap <C-i> :BufExplorer<cr>
+
+endif
 
 " Startify: Fancy startup screen for vim {{{
-        Plug 'mhinz/vim-startify'
+"
 
+if s:has_plugin('vim-startify')
         " Don't change to directory when selecting a file
         let g:startify_files_number = 7
         let g:startify_change_to_dir = 0
@@ -423,59 +581,10 @@ Plug 'tpope/vim-tbone'
 
         autocmd User Startified setlocal cursorline
 
+endif
+" }}}
+
     " }}}
-
-"Keybindings:  {{{
-
- 
-"keybindings for buffer transversal
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-
-
-"keybinding for split navigations
-map <silent> <C-h> :call functions#WinMove('h')<cr>
-map <silent> <C-j> :call functions#WinMove('j')<cr>
-map <silent> <C-k> :call functions#WinMove('k')<cr>
-map <silent> <C-l> :call functions#WinMove('l')<cr>
-set splitbelow
-set splitright
-
-"keybinding to use F8 to open file under cursor in vertical split!
-map <leader>v :vertical wincmd f<CR>
-map <leader>h :wincmd f<CR>
-
-"keybinding for active file directory completion
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-"Keybinding to clear highlighting after search
-nnoremap <leader>c :nohl<CR>
-
-"Keybindings to go with ctags!
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-set tags+=tags;$HOME
-
-"Keybindings for fzf (FZF)
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>m :Marks<cr>
-nnoremap <leader>w :Windows<cr>
-nnoremap <leader>t :Tags<cr>
-nnoremap <leader>f :Files<cr>
-
-
-
-
-"Keybindings for 'exiting terminal' "
-tnoremap <Esc> <C-\><C-n>
-
-"Add keybinding for quitting insert mode
-" inoremap kj <Esc>
-" inoremap jk <Esc> 
-
-"}}}
 
 "Commands: {{{
 "Command for clearing registers
@@ -483,34 +592,31 @@ command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | 
 command! T split | terminal
 command! Vt vsplit | terminal 
 
-"}}}
-"
+" FOLD SETTING INSIDE VIMRC
+function SetFold()
+  set foldmethod=marker   
+  set foldlevelstart=99   
+  set foldnestmax=10   
+  set nofoldenable   
+  set foldlevel=0
+endfunction
 
-"Filetype Commands: {{{
-autocmd Filetype python setlocal expandtab 
-autocmd Filetype ocaml setlocal shiftwidth=2 softtabstop=2
-autocmd Filetype c,cpp,cc setlocal foldmethod=syntax
+"}}}
+
+"Automatic Commands: {{{
+autocmd FileType python setlocal expandtab 
+autocmd FileType ocaml setlocal shiftwidth=2 softtabstop=2
+autocmd FileType c,cpp,cc setlocal foldmethod=syntax
 
 autocmd FileType ocaml setlocal commentstring=(*\%s\*)
 autocmd FileType tex setlocal spell
 autocmd FileType plaintex setlocal spell
 autocmd FileType markdown setlocal spell expandtab softtabstop=4 shiftwidth=4
 
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+augroup FOLDVIM
+  autocmd!
+  autocmd FileType vim  call SetFold()
+augroup END
 "}}}
 
-call plug#end()
-"Custom source for vimtex completion
-"
-" call deoplete#custom#var('omni', 'input_patterns', {
-"       \ 'tex' : g:vimtex#re#deoplete,
-" \})
-syntax on
-set termguicolors
-"
-"Vim One
-set background=dark
-let g:one_allow_italics = 1
-colorscheme one
