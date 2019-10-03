@@ -8,6 +8,11 @@ path+=('/home/logan/go/bin/')
 path+=('/home/logan/.npm-global/bin')
 export PATH
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 
 #Disable auto window naming in tmux
 DISABLE_AUTO_TITLE=true
@@ -19,7 +24,11 @@ DEFAULT_USER='logan'
 umask 026
 
 # Allow Alt+. to have last command args in vicmd mode
+set -o vi
 bindkey "^[." insert-last-word
+bindkey "^F" autosuggest-accept
+bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-history
 
 
 # USE POSIX time command
