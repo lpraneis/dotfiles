@@ -4,7 +4,6 @@
  
 path+=('/usr/local/texlive/2018/bin/x86_64-linux')
 path+=('/home/logan/.local/bin')
-path+=('.')
 path+=('/home/logan/go/bin/')
 path+=('/home/logan/.npm-global/bin')
 export PATH
@@ -16,7 +15,7 @@ DISABLE_AUTO_TITLE=true
 
 # User configuration
 DEFAULT_USER='logan'
-prompt_context(){}
+# prompt_context(){}
 umask 026
 
 # Allow Alt+. to have last command args in vicmd mode
@@ -25,14 +24,13 @@ bindkey "^[." insert-last-word
 
 # USE POSIX time command
 TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
-#autosuggestions configuration
 
 # Pyenv
-PYENV=/home/logan/.pyenv
+# PYENV=/home/logan/.pyenv
 export PATH="/home/logan/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-source $PYENV/completions/pyenv.zsh
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# source $PYENV/completions/pyenv.zsh
 
 
 # Zsh Autocompletions
@@ -46,12 +44,6 @@ source ~/dotfiles/aliases.zsh
 
 # source functions
 source ~/dotfiles/functions.zsh
-
-# Automatically add ssh keys
-if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval `ssh-agent -s`
-  ssh-add
-fi
 
 # OPAM configuration
 . /home/logan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
