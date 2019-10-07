@@ -468,15 +468,15 @@ tnoremap <Esc> <C-\><C-n>
 let g:mkdp_refresh_slow = 1 "sets it to only refresh on leaving insert mode or on write
 
 if s:has_plugin('undotree') 
-  nnoremap <F2> :UndotreeToggle<cr>
+nnoremap <F2> :UndotreeToggle<cr>
 endif
 
 " Doge Documentation {{{
 if s:has_plugin('vim-doge')
-  let g:doge_doc_standard_python='google'
-  let g:doge_mapping='<Leader>g'
-  let g:doge_mapping_comment_jump_forward='<C-e>'
-  let g:doge_mapping_comment_jump_forward='<C-r>'
+let g:doge_doc_standard_python='google'
+let g:doge_mapping='<Leader>g'
+let g:doge_mapping_comment_jump_forward='<C-e>'
+let g:doge_mapping_comment_jump_forward='<C-r>'
 endif
 " }}}
 
@@ -506,38 +506,38 @@ let g:pandoc#folding#fastfolds = 1
 
 "Fast Folding
 if s:has_plugin('FastFold')
-  nmap zuz <Plug>(FastFoldUpdate)
-  let g:fastfold_savehook = 1
-  let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C' ]
-  let g:fastfold_fold_movement_commands = [']z', '[Z', 'zj', 'zk']
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C' ]
+let g:fastfold_fold_movement_commands = [']z', '[Z', 'zj', 'zk']
 
-  let g:markdown_folding = 1
-  let g:tex_fold_enabled =1 
-  let g:rust_fold = 1
+let g:markdown_folding = 1
+let g:tex_fold_enabled =1 
+let g:rust_fold = 1
 endif
 
 "}}}
 
 if s:has_plugin('fzf.vim')
-  "Keybindings for fzf (FZF)
-  nnoremap <leader>b :Buffers<cr>
-  nnoremap <leader>m :Marks<cr>
-  nnoremap <leader>w :Windows<cr>
-  nnoremap <leader>t :Tags<cr>
-  nnoremap <leader>f :Files<cr>
+"Keybindings for fzf (FZF)
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>m :Marks<cr>
+nnoremap <leader>w :Windows<cr>
+nnoremap <leader>t :Tags<cr>
+nnoremap <leader>f :Files<cr>
 
-  nnoremap <leader>lt :call vimtex#fzf#run()<cr>
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+nnoremap <leader>lt :call vimtex#fzf#run()<cr>
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 endif
 
 if s:has_plugin('bufexplorer')
 
-  let g:bufExplorerDisableDefaultKeyMapping =1 
-  let g:bufExplorerShowNoName=1
-  nnoremap <C-i> :BufExplorer<cr>
+let g:bufExplorerDisableDefaultKeyMapping =1 
+let g:bufExplorerShowNoName=1
+nnoremap <C-i> :BufExplorer<cr>
 
 endif
 
@@ -545,44 +545,44 @@ endif
 "
 
 if s:has_plugin('vim-startify')
-        " Don't change to directory when selecting a file
-        let g:startify_files_number = 7
-        let g:startify_change_to_dir = 0
-        let g:startify_custom_header = [ ]
-        let g:startify_relative_path = 1
-        let g:startify_use_env = 1
+      " Don't change to directory when selecting a file
+      let g:startify_files_number = 7
+      let g:startify_change_to_dir = 0
+      let g:startify_custom_header = [ ]
+      let g:startify_relative_path = 1
+      let g:startify_use_env = 1
 
-        function! s:list_commits()
-            let git = 'git -C ' . getcwd()
-            let commits = systemlist(git . ' log --oneline | head -n5')
-            let git = 'G' . git[1:]
-            return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
-        endfunction
+      function! s:list_commits()
+          let git = 'git -C ' . getcwd()
+          let commits = systemlist(git . ' log --oneline | head -n5')
+          let git = 'G' . git[1:]
+          return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
+      endfunction
 
-        " Custom startup list, only show MRU from current directory/project
-        let g:startify_lists = [
-        \  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
-        \  { 'type': 'sessions',       'header': [ 'Sessions '. getcwd() ] },
-        \  { 'type': function('s:list_commits'), 'header': [ 'Recent Commits' ] },
-        \  { 'type': 'sessions',  'header': [ 'Sessions' ]       },
-        \  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
-        \  { 'type': 'commands',  'header': [ 'Commands' ]       },
-        \ ]
+      " Custom startup list, only show MRU from current directory/project
+      let g:startify_lists = [
+      \  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
+      \  { 'type': 'sessions',       'header': [ 'Sessions '. getcwd() ] },
+      \  { 'type': function('s:list_commits'), 'header': [ 'Recent Commits' ] },
+      \  { 'type': 'sessions',  'header': [ 'Sessions' ]       },
+      \  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
+      \  { 'type': 'commands',  'header': [ 'Commands' ]       },
+      \ ]
 
-        let g:startify_commands = [
-        \   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
-        \   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
-        \   { 'ur': [ 'Update Remote Plugins ', ':UpdateRemotePlugins' ] },
-        \   { 'pc': [ 'Clean Plugins', ':PlugClean' ] },
-        \ ]
+      let g:startify_commands = [
+      \   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
+      \   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
+      \   { 'ur': [ 'Update Remote Plugins ', ':UpdateRemotePlugins' ] },
+      \   { 'pc': [ 'Clean Plugins', ':PlugClean' ] },
+      \ ]
 
-        let g:startify_bookmarks = [
-            \ { 'c': '~/dotfiles/init.vim' },
-            \ { 'z': '~/dotfiles/.zshrc' },
-            \ { 'l': '~/.config/nvim/coc-settings.json'},
-        \ ]
+      let g:startify_bookmarks = [
+          \ { 'c': '~/dotfiles/init.vim' },
+          \ { 'z': '~/dotfiles/.zshrc' },
+          \ { 'l': '~/.config/nvim/coc-settings.json'},
+      \ ]
 
-        autocmd User Startified setlocal cursorline
+      autocmd User Startified setlocal cursorline
 
 endif
 " }}}
@@ -615,6 +615,7 @@ autocmd FileType ocaml setlocal commentstring=(*\%s\*)
 autocmd FileType tex setlocal spell
 autocmd FileType plaintex setlocal spell
 autocmd FileType markdown setlocal spell expandtab softtabstop=4 shiftwidth=4
+autocmd FileType text setlocal spell expandtab softtabstop=4 shiftwidth=4
 
 
 augroup FOLDVIM
