@@ -62,7 +62,7 @@ Plug 'rhysd/vim-clang-format'
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-rmarkdown'
+" Plug 'vim-pandoc/vim-rmarkdown'
 
 Plug 'mbbill/undotree'
 "Markdown Instant Preview --- TEST
@@ -83,7 +83,10 @@ Plug 'Konfekt/FastFold'
 
 " Buffers
 Plug 'qpkorr/vim-bufkill'
+
+"Tmux
 Plug 'tpope/vim-tbone'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Fancy Startup Screen
 Plug 'mhinz/vim-startify'
@@ -171,6 +174,7 @@ set hidden
 "Vim One Color Config
 set background=dark
 let g:one_allow_italics = 1
+let g:one_dark_syntax_bg='#242424'
 colorscheme one
 
 " Better display for messages
@@ -190,8 +194,8 @@ set splitright
 set noshowmode
 
 "python virtual environments
-let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/activate'
-let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/activate'
+let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
+let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python3.6'
 
 
 " Allow git push to umn github
@@ -223,7 +227,7 @@ if s:has_plugin('lightline.vim')
 endif
 
 if s:has_plugin('vim-airline')
-  let g:airline_theme='one'
+  let g:airline_theme='base16color'
   let g:airline#extensions#branch#enabled = 1
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#tmuxline#enabled = 0
@@ -435,10 +439,10 @@ nnoremap <silent> ]B :blast<CR>
 
 
 "keybinding for split navigations
-map <silent> <C-h> :call functions#WinMove('h')<cr>
-map <silent> <C-j> :call functions#WinMove('j')<cr>
-map <silent> <C-k> :call functions#WinMove('k')<cr>
-map <silent> <C-l> :call functions#WinMove('l')<cr>
+" map <silent> <C-h> :call functions#WinMove('h')<cr>
+" map <silent> <C-j> :call functions#WinMove('j')<cr>
+" map <silent> <C-k> :call functions#WinMove('k')<cr>
+" map <silent> <C-l> :call functions#WinMove('l')<cr>
 
 "keybinding to use F8 to open file under cursor in vertical split!
 map <leader>v :vertical wincmd f<CR>
