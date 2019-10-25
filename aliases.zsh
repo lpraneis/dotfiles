@@ -6,7 +6,6 @@ alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias sage="/home/logan/apps/SageMath/sage"
 alias pia="/opt/piavpn/bin/pia-client"
 alias cat="bat"
-alias gp="git push"
 alias ls="ls --color=tty"
 
 cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir"}

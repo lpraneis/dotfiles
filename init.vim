@@ -475,12 +475,17 @@ if s:has_plugin('undotree')
 nnoremap <F2> :UndotreeToggle<cr>
 endif
 
+if s:has_plugin('vim-clang-format')
+  nnoremap <Space>f :ClangFormat<cr>
+endif
+
 " Doge Documentation {{{
 if s:has_plugin('vim-doge')
-let g:doge_doc_standard_python='google'
-let g:doge_mapping='<Leader>g'
-let g:doge_mapping_comment_jump_forward='<C-e>'
-let g:doge_mapping_comment_jump_forward='<C-r>'
+  let g:doge_doc_standard_python='google'
+  let g:doge_doc_standard_cpp='doxygen'
+  let g:doge_mapping='<Leader>g'
+  let g:doge_mapping_comment_jump_forward='<C-e>'
+  let g:doge_mapping_comment_jump_forward='<C-r>'
 endif
 " }}}
 
@@ -538,11 +543,9 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 endif
 
 if s:has_plugin('bufexplorer')
-
-let g:bufExplorerDisableDefaultKeyMapping =1 
-let g:bufExplorerShowNoName=1
-nnoremap <C-i> :BufExplorer<cr>
-
+  let g:bufExplorerDisableDefaultKeyMapping=1 
+  let g:bufExplorerShowNoName=1
+  nnoremap <C-i> :BufExplorer<cr>
 endif
 
 " Startify: Fancy startup screen for vim {{{
