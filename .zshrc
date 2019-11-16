@@ -65,8 +65,10 @@ source ~/dotfiles/aliases.zsh
 # source functions
 source ~/dotfiles/functions.zsh
 
+# source standard python dist
+# source /home/logan/python-virtual-environments/std3/bin/activate
+
 # source tmuxinator
-# source ~/.rvm/scripts/rvm
 # source ~/.completions/tmuxinator.zsh
 
 # OPAM configuration

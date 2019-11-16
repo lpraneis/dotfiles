@@ -7,9 +7,10 @@ alias sage="/home/logan/apps/SageMath/sage"
 alias pia="/opt/piavpn/bin/pia-client"
 alias cat="bat"
 alias ls="ls --color=tty"
+alias umnvpn="/opt/cisco/anyconnect/bin/vpnui"
 
 cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir"}
 py() { env=$(find /home/logan/python-virtual-environments -maxdepth 1 -type d | fzf +m) &&
     source "$env/bin/activate"}
 
-
+mkcd() { mkdir "$1"; cd "$1"; }
