@@ -123,6 +123,9 @@ set showmatch
 " that is not typed will not cause screen to redraw
 set lazyredraw
 
+"NASM syntax
+let g:asmsyntax='nasm'
+
 "When 'wildmenu' is on, command-line
 "completion operates in an enhanced mode.
 set wildmenu
@@ -482,7 +485,7 @@ endif
 " Doge Documentation {{{
 if s:has_plugin('vim-doge')
   let g:doge_doc_standard_python='google'
-  let g:doge_doc_standard_cpp='doxygen'
+  let g:doge_doc_standard_cpp='doxygen_javadoc'
   let g:doge_mapping='<Leader>g'
   let g:doge_mapping_comment_jump_forward='<C-e>'
   let g:doge_mapping_comment_jump_forward='<C-r>'

@@ -14,6 +14,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
+setopt no_share_history
+unsetopt share_history
 
 export EDITOR=nvim
 
