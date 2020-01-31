@@ -81,3 +81,7 @@ alias config='/usr/bin/git --git-dir=/home/logan/.cfg/ --work-tree=/home/logan'
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# 5103
+export PATH="$PATH:/home/logan/Documents/school/20spring/5103/os161/tools/bin"
+

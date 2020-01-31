@@ -59,6 +59,12 @@ Plug 'dhruvasagar/vim-table-mode'
 " Clang auto-formatter
 Plug 'rhysd/vim-clang-format'
 
+" Extra C/C++ Syntax
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" Better file syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -412,12 +418,17 @@ let g:vimtex_fold_enabled = 1
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 
+if s:has_plugin('vim-cpp-enhanced-highlight')
+" highlight POSIX functions
+  let g:cpp_posix_standard = 1
+endif
+
 
 " }}}
 
 " General Keybindings {{{
-map <leader>mp :MarkdownPreview
-map <leader>pc :Pandoc pdf --template eisvogel --listings<CR>
+map <leader>mp :MarkdownPreview<CR>
+map <leader>pc :Pandoc pdf<CR>
 map <leader>pv :!evince %:p:r.pdf<CR>
 
 " Map ,e... to edit in new window, split, vertical, tab, from current
