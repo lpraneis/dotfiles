@@ -1,4 +1,4 @@
-echo "source ~/dotfiles/.zshrc" > .zshrc
-echo "source ~/dotfiles/init.vim" > .config/nvim/init.vim
-cp ./coc-settings.json ./config/nvim/coc-settitngs.json
+echo "source ~/dotfiles/.zshrc" > $HOME/.zshrc
+echo "source ~/dotfiles/init.vim" > $HOME/.config/nvim/init.vim
+cp ./coc-settings.json $HOME/./config/nvim/coc-settitngs.json
 
