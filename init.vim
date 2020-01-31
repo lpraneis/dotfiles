@@ -184,7 +184,9 @@ set hidden
 set background=dark
 let g:one_allow_italics = 1
 let g:one_dark_syntax_bg='#242424'
-colorscheme one
+if s:has_plugin('vim-one')
+  colorscheme one
+endif
 
 " Better display for messages
 set cmdheight=2
