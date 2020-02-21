@@ -130,7 +130,7 @@ set showmatch
 set lazyredraw
 
 "NASM syntax
-let g:asmsyntax='nasm'
+let g:asmsyntax='asm'
 
 "When 'wildmenu' is on, command-line
 "completion operates in an enhanced mode.

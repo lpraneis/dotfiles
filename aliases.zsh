@@ -8,6 +8,7 @@ alias pia="/opt/piavpn/bin/pia-client"
 alias cat="bat"
 alias ls="ls --color=tty"
 alias umnvpn="/opt/cisco/anyconnect/bin/vpnui"
+alias dc="sudo docker-compose"
 
 cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir"}
 py() { env=$(find /home/logan/python-virtual-environments -maxdepth 1 -type d | fzf +m) &&
