@@ -59,6 +59,9 @@ Plug 'dhruvasagar/vim-table-mode'
 " Clang auto-formatter
 Plug 'rhysd/vim-clang-format'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " Extra C/C++ Syntax
 Plug 'octol/vim-cpp-enhanced-highlight'
 
@@ -430,7 +433,7 @@ endif
 
 " General Keybindings {{{
 map <leader>mp :MarkdownPreview<CR>
-map <leader>pc :Pandoc pdf<CR>
+map <leader>pc :Pandoc pdf -H /home/logan/Documents/markdown/header.tex   --pdf-engine-opt=-shell-escape<CR>
 map <leader>pv :!evince %:p:r.pdf<CR>
 
 " Map ,e... to edit in new window, split, vertical, tab, from current
@@ -491,8 +494,13 @@ if s:has_plugin('undotree')
 nnoremap <F2> :UndotreeToggle<cr>
 endif
 
+" Map <Space>f to whichever formatter makes sense for that filetype
 if s:has_plugin('vim-clang-format')
-  nnoremap <Space>f :ClangFormat<cr>
+  autocmd FileType c,cpp,cc nnoremap <buffer> <Space>f :ClangFormat<cr>
+endif
+
+if s:has_plugin('rust.vim')
+  autocmd FileType rust nnoremap <buffer> <Space>f :RustFmt<cr>
 endif
 
 " Doge Documentation {{{

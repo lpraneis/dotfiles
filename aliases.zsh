@@ -1,7 +1,7 @@
 alias vi="nvim"
 alias normps="$HOME/bin/normps.sh"
 alias prog="git log -- ."
-alias ghidra="/home/logan/apps/ghidra_9.0.4/ghidraRun"
+alias ghidra="/home/logan/apps/ghidra_9.1.2_PUBLIC/ghidraRun"
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias sage="/home/logan/apps/SageMath/sage"
 alias pia="/opt/piavpn/bin/pia-client"

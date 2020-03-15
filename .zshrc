@@ -21,8 +21,10 @@ export EDITOR=nvim
 
 ZSH_THEME="spaceship"
 SPACESHIP_NODE_SHOW="false"
+SPACESHIP_RUST_SHOW="false"
 SPACESHIP_DIR_TRUNC=2
 SPACESHIP_EXEC_TIME_ELAPSED=30
+SPACESHIP_DOCKER_SHOW="false"
 
 
 #Disable auto window naming in tmux
