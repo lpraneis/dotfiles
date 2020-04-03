@@ -9,6 +9,8 @@ alias cat="bat"
 alias ls="ls --color=tty"
 alias umnvpn="/opt/cisco/anyconnect/bin/vpnui"
 alias dc="sudo docker-compose"
+alias loadalgo="sudo /home/logan/Documents/tech/vpn/load-algo.sh"
+alias unloadalgo="sudo /home/logan/Documents/tech/vpn/unload-algo.sh"
 
 cs() { dir=$(find /home/logan/currTerm/ -maxdepth 3 -type d| fzf +m) && cd "$dir"}
 py() { env=$(find /home/logan/python-virtual-environments -maxdepth 1 -type d | fzf +m) &&
