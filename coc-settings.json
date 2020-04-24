@@ -28,5 +28,6 @@
   "python.venvPath": "/home/logan/python-virtual-environments/",
   "python.jediEnabled": false,
   "coc.source.buffer.enable": false,
-  "coc.source.around.enable":false
+  "coc.source.around.enable":false,
+  "rust-analyzer.serverPath":"/home/logan/.cargo/bin/rust-analyzer"
 }

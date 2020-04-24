@@ -209,7 +209,7 @@ set noshowmode
 
 "python virtual environments
 let g:python_host_prog='/home/logan/python-virtual-environments/nvim2/bin/python'
-let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python3.6'
+let g:python3_host_prog='/home/logan/python-virtual-environments/nvim3/bin/python3.8'
 
 
 " Allow git push to umn github
