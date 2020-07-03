@@ -50,6 +50,7 @@ plugins=(
   )
 
 source $ZSH/oh-my-zsh.sh
+source /home/logan/.cargo/env
 
 # Allow Alt+. to have last command args in vicmd mode
 set -o vi
