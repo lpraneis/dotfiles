@@ -18,7 +18,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'laggardkernel/vim-one'
 
 " Coc Nvim
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Latex Plugin
 Plug 'lervag/vimtex'
@@ -67,6 +67,9 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Better file syntax highlighting
 Plug 'sheerun/vim-polyglot'
+
+" ARM Assembly syntax highlight
+Plug 'ARM9/arm-syntax-vim'
 
 " R Markdown
 Plug 'vim-pandoc/vim-pandoc'
@@ -189,6 +192,10 @@ let g:one_allow_italics = 1
 let g:one_dark_syntax_bg='#242424'
 if s:has_plugin('vim-one')
   colorscheme one
+  call one#highlight('rustCommentLine', '959595', '', 'none')
+  call one#highlight('rustCommentBlock', '959595', '', 'none')
+  call one#highlight('rustCommentBlockDoc', '959595', '', 'none')
+  call one#highlight('rustCommentLineDoc', '959595', '', 'none')
 endif
 
 " Better display for messages

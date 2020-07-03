@@ -4,10 +4,8 @@
 
 export ZSH=/home/logan/.oh-my-zsh
  
-path+=('/usr/local/texlive/2018/bin/x86_64-linux')
 path+=('/home/logan/.local/bin')
 path+=('/home/logan/go/bin/')
-path+=('/home/logan/.npm-global/bin')
 export PATH
 
 HISTFILE=~/.zsh_history
@@ -38,9 +36,6 @@ DEFAULT_USER='logan'
 # prompt_context(){}
 umask 026
 
-
-
-
 # USE POSIX time command
 TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 
@@ -69,21 +64,5 @@ source ~/dotfiles/aliases.zsh
 # source functions
 source ~/dotfiles/functions.zsh
 
-# source standard python dist
-# source /home/logan/python-virtual-environments/std3/bin/activate
-
-# source tmuxinator
-# source ~/.completions/tmuxinator.zsh
-
-# OPAM configuration
-. /home/logan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-alias config='/usr/bin/git --git-dir=/home/logan/.cfg/ --work-tree=/home/logan'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# 5103
-export PATH="$PATH:/home/logan/Documents/school/20spring/5103/os161/tools/bin"
-
