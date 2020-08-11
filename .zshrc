@@ -43,7 +43,6 @@ TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 plugins=(
   git
   colored-man-pages
-  zsh-autosuggestions
   zsh-syntax-highlighting
   vi-mode
   ssh-agent

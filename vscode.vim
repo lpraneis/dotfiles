@@ -138,9 +138,6 @@ map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-" Switch buffers
-nnoremap <silent>H :silent bp<CR>
-nnoremap <silent>L :silent bn<CR>
 
 "keybindings for buffer transversal
 nnoremap <silent> [b :bprevious<CR>
@@ -166,6 +163,19 @@ set tags+=tags;$HOME
 
 "Keybindings for 'exiting terminal' "
 tnoremap <Esc> <C-\><C-n>
+"}}}
+
+" VSCODE specific keybindings
+" {{{
+nnoremap <silent>H  :<C-U>call VSCodeNotify('workbench.action.quickOpenNavigatePreviousInEditorPicker')<CR>
+nnoremap <silent>L  :<C-U>call VSCodeNotify('workbench.action.quickOpenNavigateNextInEditorPicker')<CR>
+nnoremap <silent>D  :<C-U>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <leader>p  :<C-U>call VSCodeNotify('editor.action.showDefinitionPreviewHover')<CR>
+nnoremap <space>g   :<C-U>call VSCodeNotify('editor.action.formatDocument')<CR>
+
+" Switch buffers
+nnoremap <silent>H :silent bp<CR>
+nnoremap <silent>L :silent bn<CR>
 
 "}}}
 

@@ -21,7 +21,7 @@ Plug 'laggardkernel/vim-one'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Latex Plugin
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 "TOML syntax
 Plug 'cespare/vim-toml'
@@ -78,7 +78,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'mbbill/undotree'
 "Markdown Instant Preview --- TEST
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Documentation Generator 
 Plug 'kkoomen/vim-doge'
@@ -409,9 +409,6 @@ nn xx x
 "{{{ Other Syntax Configuration
 "rust syntax
 
-" These two commands make the tags by rusty tags vi
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
 " let g:vimtex_compiler_progname= 'nvr'
 let g:vimtex_compiler_progname= 'latexmk'
@@ -563,7 +560,6 @@ nnoremap <leader>w :Windows<cr>
 nnoremap <leader>t :Tags<cr>
 nnoremap <leader>f :Files<cr>
 
-nnoremap <leader>lt :call vimtex#fzf#run()<cr>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -651,6 +647,16 @@ autocmd FileType tex setlocal spell
 autocmd FileType plaintex setlocal spell
 autocmd FileType markdown setlocal spell expandtab softtabstop=4 shiftwidth=4
 autocmd FileType text setlocal spell expandtab softtabstop=4 shiftwidth=4
+
+
+function RustOpts()
+  nnoremap <space>g :RustFmt<cr>
+endfunction
+
+augroup RUST
+  autocmd!
+  autocmd FileType rust call RustOpts()
+augroup END
 
 
 augroup FOLDVIM

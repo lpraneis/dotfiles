@@ -1,7 +1,7 @@
 {
   "languageserver": {
     "ccls": {
-      "command": "/home/logan/apps/ccls/Release/ccls",
+      "command": "ccls",
       "filetypes": ["c", "cpp"],
       "rootPatterns": [".ccls-root","compile_commands.json"],
       "initializationOptions": {
@@ -9,24 +9,8 @@
           "directory":".ccls-cache"
         }
       }
-    },
-    "efm": {
-      "command": "efm-langserver",
-      "args":[],
-      "filetypes": [ "markdown"]
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes":["sh"], 
-      "ignoredRootPaths":["~"]
     }
   },
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "/home/logan/python-virtual-environments/nvim3/bin/pylint",
-  "python.sortImports.path": "/home/logan/python-virtual-environments/nvim3/bin/isort",
-  "python.venvPath": "/home/logan/python-virtual-environments/",
-  "python.jediEnabled": false,
   "coc.source.buffer.enable": false,
   "coc.source.around.enable":false,
   "rust-analyzer.serverPath":"/home/logan/.cargo/bin/rust-analyzer"
