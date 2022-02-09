@@ -31,12 +31,8 @@ if s:has_plugin('vim-startify')
 				\ {'type': 'commands', 'header': ['Commands'] },
 				\]
 	let g:startify_bookmarks = [
-				\ { 'c': 'C:\Users\lpraneis\AppData\Local\nvim\init.vim'},
-				\ { 'i': 'C:\Users\lpraneis\AppData\Local\nvim\init.vscode.vim'},
-				\ { 'v': 'C:\Users\lpraneis\.vsvimrc'},
-				\ { 's': 'C:\Users\lpraneis\.ssh\config'},
-				\ { 'h': 'C:\Windows\system32\drivers\etc\hosts'},
-				\ { 'f': 'D:\osi\v13\monarch\src\.clang-format'},
+				\ { 'c': '/home/logan/.config/nvim/init.vim'},
+				\ { 's': '/home/logan/.ssh/config'},
 				\]
 
 	let g:startify_commands = [

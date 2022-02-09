@@ -55,4 +55,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do' : ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Rust
+Plug 'simrat39/rust-tools.nvim'
+
 call plug#end() 
