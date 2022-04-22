@@ -120,40 +120,39 @@ font:
     family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Ubuntu Nerd Font Complete Mono
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-
+    family: monospace
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Ubuntu Bold Nerd Font Complete Mono
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Ubuntu Italic Nerd Font Complete Mono
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: monospace
+    style: Ubuntu Bold Italic Nerd Font Complete Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
 
   # Point size
   size: 10.0
