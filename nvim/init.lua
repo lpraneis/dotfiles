@@ -24,27 +24,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
--- Plug 'tpope/vim-vinegar'
--- Plug 'tpope/vim-unimpaired'
--- Plug 'tpope/vim-surround'
--- Plug 'tpope/vim-sensible'
--- Plug 'tpope/vim-repeat'
--- Plug 'tpope/vim-abolish'
--- Plug 'tpope/vim-fugitive'
--- Plug 'tpope/vim-obsession'
--- Plug 'tpope/vim-dispatch'
--- Plug 'williamboman/nvim-lsp-installer', {'branch': 'main'}
--- Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
--- Plug 'hrsh7th/cmp-buffer',  {'branch': 'main'}
--- Plug 'hrsh7th/cmp-path', {'branch': 'main'}
--- Plug 'hrsh7th/cmp-cmdline', {'branch': 'main'}
--- Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
--- Plug 'L3MON4D3/LuaSnip'
--- Plug 'saadparwaiz1/cmp_luasnip'
--- Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
--- Plug 'qpkorr/vim-bufkill'
--- Plug 'rhysd/vim-clang-format'
-
 require('packer').startup(function()
 	use {
 		'wbthomason/packer.nvim',
@@ -59,11 +38,11 @@ require('packer').startup(function()
 		'laggardkernel/vim-one',
 		'RRethy/nvim-base16',
 		'lewis6991/impatient.nvim',
-    'folke/which-key.nvim',
-    'folke/zen-mode.nvim',
+		'folke/which-key.nvim',
+		'folke/zen-mode.nvim',
 		'kevinhwang91/nvim-hlslens',
 		'kyazdani42/nvim-tree.lua',
-		-- 'kyazdani42/nvim-web-devicons',
+		'kyazdani42/nvim-web-devicons',
 		'lewis6991/gitsigns.nvim',
 		'm-demare/hlargs.nvim',
 		'noib3/nvim-cokeline',
@@ -74,11 +53,18 @@ require('packer').startup(function()
 		'SmiteshP/nvim-gps',
 		'lukas-reineke/indent-blankline.nvim',
 		'qpkorr/vim-bufkill',
+		'L3MON4D3/LuaSnip',
+		'saadparwaiz1/cmp_luasnip',
 	}
 	use {
-	  'nvim-treesitter/nvim-treesitter',
+		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
+	use {'hrsh7th/cmp-nvim-lsp', branch= 'main'}
+	use {'hrsh7th/cmp-buffer',  branch= 'main'}
+	use {'hrsh7th/cmp-path', branch= 'main'}
+	use {'hrsh7th/cmp-cmdline', branch= 'main'}
+	use {'hrsh7th/nvim-cmp', branch= 'main'}
 	if packer_bootstrap then
 		require('packer').sync()
 	end
@@ -90,6 +76,7 @@ o.autoread = true
 o.autowrite = true
 o.backspace = 'indent,eol,start'
 o.expandtab = false
+o.joinspaces = true
 o.fileencoding = 'UTF-8'
 o.hlsearch = true
 o.ignorecase = true
@@ -101,6 +88,8 @@ o.smartindent = true
 o.softtabstop = 2
 o.tabstop = 2
 o.termguicolors = true
+o.splitbelow = true
+o.splitright = true
 
 -- Window Local
 wo.colorcolumn='101'
@@ -112,7 +101,6 @@ o.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Colorscheme
 vim.g.base16colorspace = 256
-vim.cmd('colorscheme base16-default-dark')
 vim.cmd('filetype plugin indent on')
 
 -- Autocmd
@@ -136,7 +124,12 @@ nnoremap('<leader>bo', ':w <bar> %bd <bar> e# <bar> bd# <CR>')
 ----------------
 -- Plugin Configurations
 ----------------
---
+require('base16-colorscheme').setup({
+	base00 = '#181818', base01 = '#353b45', base02 = '#3e4451', base03 = '#545862',
+	base04 = '#565c64', base05 = '#abb2bf', base06 = '#b6bdca', base07 = '#c8ccd4',
+	base08 = '#e06c75', base09 = '#d19a66', base0A = '#e5c07b', base0B = '#98c379',
+	base0C = '#56b6c2', base0D = '#61afef', base0E = '#c678dd', base0F = '#be5046'
+})
 require('nvim-tree').setup()
 nnoremap('<C-n>', ':NvimTreeToggle<CR>')
 nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
@@ -178,13 +171,13 @@ require('telescope').setup {
 
 }
 tb = require('telescope.builtin')
-nnoremap('<leader>ff', '<cmd>lua tb.builtin).find_files()<cr>')
-nnoremap('<leader>fs', '<cmd>lua tb.builtin).live_grep()<cr>')
-nnoremap('<leader>fb', '<cmd>lua tb.builtin).buffers()<cr>')
-nnoremap('<leader>fgc', '<cmd>lua tb.builtin).git_commits()<cr>')
-nnoremap('<leader>fgs', '<cmd>lua tb.builtin).git_status()<cr>')
-nnoremap('<leader>fgb', '<cmd>lua tb.builtin).git_bcommits()<cr>')
-nnoremap('<leader>fr', '<cmd>lua tb.builtin).lsp_references()<cr>')
+nnoremap('<leader>ff', '<cmd>lua tb.find_files()<cr>')
+nnoremap('<leader>fs', '<cmd>lua tb.live_grep()<cr>')
+nnoremap('<leader>fb', '<cmd>lua tb.buffers()<cr>')
+nnoremap('<leader>fgc', '<cmd>lua tb.git_commits()<cr>')
+nnoremap('<leader>fgs', '<cmd>lua tb.git_status()<cr>')
+nnoremap('<leader>fgb', '<cmd>lua tb.git_bcommits()<cr>')
+nnoremap('<leader>fr', '<cmd>lua tb.lsp_references()<cr>')
 
 -- NvimTree - File navigator sidebar
 require('nvim-tree').setup()
@@ -200,22 +193,23 @@ local gps = require("nvim-gps")
 
 -- Lualine - status line plugin
 require('lualine').setup({
-  extensions = {'nvim-tree'},
-  sections = {
-    lualine_c = {'filename', { gps.get_location, cond = gps.is_available } },
-  },
+	options = { theme = 'onedark'},
+	extensions = {'nvim-tree'},
+	sections = {
+		lualine_c = {'filename', { gps.get_location, cond = gps.is_available } },
+	},
 })
 -- Cokeline - Bufferbar plugin
 require('cokeline').setup({
-  sidebar = {
-    filetype = 'NvimTree',
-    components = {
-      {
-        text = '  NvimTree',
-        style = 'bold',
-      },
-    }
-  },
+	sidebar = {
+		filetype = 'NvimTree',
+		components = {
+			{
+				text = '  NvimTree',
+				style = 'bold',
+			},
+		}
+	},
 })
 -- Map H,L to buffer change ( mimic tabs, but better )
 map('n', 'H', '<Plug>(cokeline-focus-prev)', {silent = true})
@@ -225,45 +219,77 @@ map('n', 'L', '<Plug>(cokeline-focus-next)', {silent = true})
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 require('indent_blankline').setup({
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
+	space_char_blankline = " ",
+	show_current_context = true,
+	show_current_context_start = true,
 })
 
 -- NVIM TreeSitter - Treesitter configs
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {"rust", "c", "markdown", "lua", "cpp", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml"},
-  highlight = {
-    enable = true,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  }
-
+	ensure_installed = {"rust", "c", "markdown", "lua", "cpp", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml"},
+	highlight = {
+		enable = true,
+	},
 }
 
 -- hlargs - Highlight function args using treesitter
 require('hlargs').setup()
 
--- Rust Tools - Setup lsp and more automatically for rust
-require('rust-tools').setup()
 
 -- Zen Mode - Have a moment of zen when writing
 require("zen-mode").setup()
 
 -- Scrollbar - Add a scroll bar to neovim
 require("scrollbar").setup({
-    handle = {
-      color = '#b8b8b8',
-    },
-    handlers = {
-        search = true,
-    },
+	handle = {
+		color = '#b8b8b8',
+	},
+	handlers = {
+		search = true,
+	},
 })
 -- Comment - Comment keymaps for extra powers on what to comment out
 require('Comment').setup()
+
+require('telescope').setup {
+	defaults = {
+		mappings = {
+			i = {
+				["<C-h>"] = "which_key"
+			}
+		},
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case"
+		}
+	},
+	pickers = {
+		buffers = {
+			mappings = {
+				n = {
+					["d"] = function(prompt_bufnr)
+						require("telescope.actions").delete_buffer(prompt_bufnr)
+					end
+				},
+				i = {
+					["<C-b>"] = function(prompt_bufnr)
+						require("telescope.actions").delete_buffer(prompt_bufnr)
+					end
+				}
+			}
+		}
+	}
+
+}
+------------------------
+-- LSP Plugin Configs --
+-----------------------
+require('lsp')
 
 ------------------------
 -- Vim Plugin Configs --
