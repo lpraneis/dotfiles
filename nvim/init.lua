@@ -4,6 +4,8 @@ require('impatient')
 ----------------
 local sys = require('sys')
 local maps = require('maps')
+local fs = require('fs')
+
 
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -91,6 +93,20 @@ o.termguicolors = true
 o.splitbelow = true
 o.splitright = true
 
+-- Persistent undos
+o.undofile = true
+if sys.is_linux or sys.is_macos then
+	o.undodir = os.getenv('HOME') .. '/.nvim/undo-dir'
+elseif sys.is_windows then
+	o.undodir = fn.stdpath('data') .. '\\undo-dir'
+end
+-- Keep undo history across sessions by storing it in a file
+if fs.does_not_exist(o.undodir) and (sys.is_linux or sys.is_macos) then
+  os.execute('mkdir -p' .. o.undodir .. '-m=0770')
+elseif fs.does_not_exist(o.undodir) and sys.is_windows then
+  os.execute('mkdir ' .. o.undodir)
+end
+
 -- Window Local
 wo.colorcolumn='101'
 wo.number = true
@@ -167,9 +183,18 @@ require('telescope').setup {
 				}
 			}
 		}
-	}
+	},
+	 extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+      }
+    }
+  }
 
 }
+
+require('telescope').load_extension('ui-select')
+
 tb = require('telescope.builtin')
 nnoremap('<leader>ff', '<cmd>lua tb.find_files()<cr>')
 nnoremap('<leader>fs', '<cmd>lua tb.live_grep()<cr>')
@@ -185,7 +210,14 @@ nnoremap('<C-n>', ':NvimTreeToggle<CR>')
 nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
 
 -- Which Key - Helpful pop up of what keybindings exist
-require("which-key").setup()
+require("which-key").setup( {
+	plugins = {
+		spelling = {
+			enabled = true,
+			suggestions = 20,
+		}
+	}
+})
 
 -- Nvim GPS - status line component to show where you are in a file
 require("nvim-gps").setup()
