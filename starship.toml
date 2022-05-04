@@ -1,2 +1,4 @@
 [rust]
 disabled = true
+[status]
+disabled = false
