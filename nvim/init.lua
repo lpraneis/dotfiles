@@ -321,6 +321,7 @@ require('telescope').setup {
 -- LSP Plugin Configs --
 -----------------------
 require('lsp')
+require('rust-tools').setup({})
 
 ------------------------
 -- Vim Plugin Configs --
