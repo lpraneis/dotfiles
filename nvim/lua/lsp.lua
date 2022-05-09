@@ -129,9 +129,17 @@ local opts = {
 				checkOnSave = {
 					command = "clippy"
 				},
-				-- cargo = {
-				-- 	target = "clippy"
-				-- },
+				--  kind of annoying, but I can't find another way for rust lsp to work cross-target,
+				--  so manually switch here if you want actual lsp context
+				cargo = {
+					-- Windows Target
+					target = "x86_64-pc-windows-gnu"
+					-- Linux Target
+					-- target = "x86_64-unknown-linux-gnu"
+					-- Mac Target
+					-- target = "x86_64-apple-darwin"
+
+				},
 			}
 		}
 	},
