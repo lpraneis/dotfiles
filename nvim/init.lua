@@ -2,6 +2,7 @@ require('impatient')
 ----------------
 -- Local imports
 ----------------
+package.path = package.path .. ";/home/lpraneis/tools/dotfiles/nvim/lua/?.lua"
 local sys = require('sys')
 local maps = require('maps')
 local fs = require('fs')
@@ -122,6 +123,7 @@ vim.cmd('filetype plugin indent on')
 -- Autocmd
 vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 vim.cmd('autocmd BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us')
+vim.cmd('autocmd BufRead * normal zR')
 
 -- Shortcuts
 vim.g.mapleader=','
@@ -321,7 +323,6 @@ require('telescope').setup {
 -- LSP Plugin Configs --
 -----------------------
 require('lsp')
-require('rust-tools').setup({})
 
 ------------------------
 -- Vim Plugin Configs --

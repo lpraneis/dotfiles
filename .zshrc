@@ -23,9 +23,8 @@ alias vim="nvim"
 
 autoload -Uz compinit && compinit
 
-
-
-alias bigchrome="/usr/bin/google-chrome --force-device-scale-factor=1 --user-data-dir=/home/lpraneis/data/chrome"
 . "$HOME/.cargo/env"
+alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
+
 
 export PATH="$PATH:$HOME/bin"
