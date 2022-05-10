@@ -20,6 +20,7 @@ alias ls="ls --color=always"
 alias l="ls --color=always -lhA"
 alias ll="ls --color=always -lh"
 alias vim="nvim"
+alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
 
 autoload -Uz compinit && compinit
 

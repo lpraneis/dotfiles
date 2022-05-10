@@ -133,7 +133,7 @@ local opts = {
 				--  so manually switch here if you want actual lsp context
 				cargo = {
 					-- Windows Target
-					target = "x86_64-pc-windows-gnu"
+					-- target = "x86_64-pc-windows-gnu"
 					-- Linux Target
 					-- target = "x86_64-unknown-linux-gnu"
 					-- Mac Target
