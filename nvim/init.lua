@@ -291,6 +291,11 @@ require('cokeline').setup({
 map('n', 'H', '<Plug>(cokeline-focus-prev)', {silent = true})
 map('n', 'L', '<Plug>(cokeline-focus-next)', {silent = true})
 
+map('n', '<C-j>', '<C-w><C-j>', {silent = true})
+map('n', '<C-k>', '<C-w><C-k>', {silent = true})
+map('n', '<C-l>', '<C-w><C-l>', {silent = true})
+map('n', '<C-h>', '<C-w><C-h>', {silent = true})
+
 -- Indent Blankline - Show indentation and what block your in
 vim.opt.list = true
 require('indent_blankline').setup({
