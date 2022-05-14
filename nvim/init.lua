@@ -124,12 +124,16 @@ vim.cmd('filetype plugin indent on')
 vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 vim.cmd('autocmd BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us')
 vim.cmd('autocmd BufRead * normal zR')
+vim.cmd('autocmd BufRead *.log set filetype=log')
 
 -- Shortcuts
 vim.g.mapleader=','
 
 -- Get rid of search highlighting
 nnoremap('<leader>c', ":nohl<CR>")
+
+-- Close the quickfix
+nnoremap('<leader>g', ":cclose<CR>")
 
 -- Map ,e... to edit in new window, split, vertical, tab, from current directory.
 nnoremap('<leader>ew', ':e <C-R>=expand("%:p:h") . "/" <CR>')
@@ -306,10 +310,22 @@ require('indent_blankline').setup({
 
 -- NVIM TreeSitter - Treesitter configs
 require('nvim-treesitter.configs').setup {
-	ensure_installed = {"rust", "c", "markdown", "lua", "cpp", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml"},
+	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile"},
 	highlight = {
 		enable = true,
 	},
+}
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.log = {
+  install_info = {
+    url = "~/tools/tree-sitter-tracing-log", -- local path or git repo
+    files = {"src/parser.c"},
+    -- optional entries:
+    branch = "master", -- default branch in case of git repo if different from master
+    generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+    requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+  },
+  filetype = "log", -- if filetype does not match the parser name
 }
 
 -- hlargs - Highlight function args using treesitter
