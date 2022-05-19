@@ -109,7 +109,6 @@ elseif fs.does_not_exist(o.undodir) and sys.is_windows then
 end
 
 -- Window Local
-wo.colorcolumn='101'
 wo.number = true
 wo.relativenumber = true
 wo.wrap = true
@@ -205,10 +204,12 @@ tb = require('telescope.builtin')
 nnoremap('<leader>ff', '<cmd>lua tb.find_files()<cr>')
 nnoremap('<leader>fs', '<cmd>lua tb.live_grep()<cr>')
 nnoremap('<leader>fb', '<cmd>lua tb.buffers()<cr>')
+nnoremap('<leader>fc', '<cmd>lua tb.current_buffer_fuzzy_find()<cr>')
 nnoremap('<leader>fgc', '<cmd>lua tb.git_commits()<cr>')
 nnoremap('<leader>fgs', '<cmd>lua tb.git_status()<cr>')
 nnoremap('<leader>fgb', '<cmd>lua tb.git_bcommits()<cr>')
 nnoremap('<leader>fr', '<cmd>lua tb.lsp_references()<cr>')
+nnoremap('<leader>fi', '<cmd>lua tb.lsp_implementations()<cr>')
 
 -- NvimTree - File navigator sidebar
 require('nvim-tree').setup()

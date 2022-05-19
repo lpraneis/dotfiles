@@ -27,6 +27,11 @@ autoload -Uz compinit && compinit
 . "$HOME/.cargo/env"
 alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
 
+function screenshot() {
+	geo=$(slurp)
+	grim -g "$geo"
+}
+
 
 export PATH="$PATH:$HOME/bin"
 
