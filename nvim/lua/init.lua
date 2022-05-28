@@ -264,8 +264,3 @@ require("scrollbar").setup({
 })
 -- Comment - Comment keymaps for extra powers on what to comment out
 require('Comment').setup()
-
-------------------------
--- Vim Plugin Configs --
-------------------------
-vim.g.rustfmt_autosave = 1

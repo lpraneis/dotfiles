@@ -120,7 +120,7 @@ font:
     family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Ubuntu Nerd Font Complete Mono
+    style: Ubuntu Nerd Font Mono
 
   # Bold font face
   bold:
@@ -128,9 +128,9 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: monospace
+    family: bold
     # The `style` can be specified to pick a specific face.
-    style: Ubuntu Bold Nerd Font Complete Mono
+    style: Ubuntu Bold Nerd Font Complete Bold
 
   # Italic font face
   italic:
@@ -155,7 +155,7 @@ font:
     # The `style` can be specified to pick a specific face.
 
   # Point size
-  size: 9.0
+  size: 9
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

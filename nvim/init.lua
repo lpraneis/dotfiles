@@ -58,6 +58,8 @@ require('packer').startup(function()
 		'qpkorr/vim-bufkill',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
+		'lukas-reineke/lsp-format.nvim',
+
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -208,8 +210,8 @@ nnoremap('<leader>fc', '<cmd>lua tb.current_buffer_fuzzy_find()<cr>')
 nnoremap('<leader>fgc', '<cmd>lua tb.git_commits()<cr>')
 nnoremap('<leader>fgs', '<cmd>lua tb.git_status()<cr>')
 nnoremap('<leader>fgb', '<cmd>lua tb.git_bcommits()<cr>')
-nnoremap('<leader>fr', '<cmd>lua tb.lsp_references()<cr>')
-nnoremap('<leader>fi', '<cmd>lua tb.lsp_implementations()<cr>')
+nnoremap('gr', '<cmd>lua tb.lsp_references()<cr>')
+nnoremap('gi', '<cmd>lua tb.lsp_implementations()<cr>')
 
 -- NvimTree - File navigator sidebar
 require('nvim-tree').setup()
@@ -391,4 +393,4 @@ require('lsp')
 ------------------------
 -- Vim Plugin Configs --
 ------------------------
-vim.g.rustfmt_autosave = 1
+-- vim.g.rustfmt_autosave = 1
