@@ -21,19 +21,29 @@ alias l="ls --color=always -lhA"
 alias ll="ls --color=always -lh"
 alias vim="nvim"
 alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
+alias nvimconfig="nvim ~/tools/dotfiles/nvim/init.lua"
 
 autoload -Uz compinit && compinit
 
 . "$HOME/.cargo/env"
 alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
+alias cat=bat
 
+# Grim screenshotting
+export GRIM_DEFAULT_DIR="$HOME/pictures"
 function screenshot() {
 	geo=$(slurp)
 	grim -g "$geo"
+	echo "Screenshot saved in $GRIM_DEFAULT_DIR"
 }
 
 
 export PATH="$PATH:$HOME/bin"
+
+# Hacks for screen sharing on sway wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -41,3 +51,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Add ssh agent
 [ -z "$SSH_AUTH_SOCK" ] && eval `ssh-agent`
+

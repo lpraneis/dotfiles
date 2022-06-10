@@ -172,6 +172,7 @@ require('telescope').setup {
 			"--with-filename",
 			"--line-number",
 			"--column",
+			"--type-not swift",
 			"--smart-case"
 		}
 	},
@@ -212,11 +213,6 @@ nnoremap('<leader>fgs', '<cmd>lua tb.git_status()<cr>')
 nnoremap('<leader>fgb', '<cmd>lua tb.git_bcommits()<cr>')
 nnoremap('gr', '<cmd>lua tb.lsp_references()<cr>')
 nnoremap('gi', '<cmd>lua tb.lsp_implementations()<cr>')
-
--- NvimTree - File navigator sidebar
-require('nvim-tree').setup()
-nnoremap('<C-n>', ':NvimTreeToggle<CR>')
-nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
 
 -- Which Key - Helpful pop up of what keybindings exist
 require("which-key").setup( {
@@ -313,11 +309,14 @@ require('indent_blankline').setup({
 
 -- NVIM TreeSitter - Treesitter configs
 require('nvim-treesitter.configs').setup {
-	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile"},
+	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "log"},
 	highlight = {
 		enable = true,
 	},
 }
+-- NOTE: Tree sitter is dumb, so the highlights.scm file should manually be symlinked
+-- to a version in a checked-out version of this repo. 
+-- TODO: Auto download the highlights file
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.log = {
   install_info = {
@@ -326,7 +325,7 @@ parser_config.log = {
     -- optional entries:
     branch = "main",
     generate_requires_npm = false,
-    requires_generate_from_grammar = false,
+    requires_generate_from_grammar = true,
   },
   filetype = "log",
 }
