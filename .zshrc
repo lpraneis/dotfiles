@@ -5,6 +5,9 @@ eval "$(starship init zsh)"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
 
+# vim line-editing mode
+bindkey -v
+
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -39,6 +42,9 @@ function screenshot() {
 
 
 export PATH="$PATH:$HOME/bin"
+
+# Go path
+export PATH="$PATH:/usr/local/go/bin"
 
 # Hacks for screen sharing on sway wayland
 export XDG_CURRENT_DESKTOP=sway

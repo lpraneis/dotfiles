@@ -116,6 +116,7 @@ local opts = {
 			other_hints_prefix = "",
 		},
 	},
+	capabilities = capabilities,
 
 	-- all the opts to send to nvim-lspconfig
 	-- these override the defaults set by rust-tools.nvim
@@ -149,3 +150,9 @@ local opts = {
 
 -- Rust Tools - Setup lsp and more automatically for rust
 require('rust-tools').setup(opts)
+
+-- Add a go language server
+require'lspconfig'.gopls.setup{ 
+	cmd= {"/home/lpraneis/go/bin/gopls"},
+	on_attach = on_attach
+}

@@ -309,7 +309,7 @@ require('indent_blankline').setup({
 
 -- NVIM TreeSitter - Treesitter configs
 require('nvim-treesitter.configs').setup {
-	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "log"},
+	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "log", "go"},
 	highlight = {
 		enable = true,
 	},
