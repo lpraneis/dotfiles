@@ -6,6 +6,8 @@ end
 require("lsp-format").setup {}
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
+local navic = require("nvim-navic")
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -15,7 +17,6 @@ local on_attach = function(client, bufnr)
 	require "lsp-format".on_attach(client)
 
 	-- Enable completion triggered by <c-x><c-o>
-	-- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings.
 	local opts = { noremap=true, silent=true }
@@ -120,7 +121,6 @@ local opts = {
 
 	-- all the opts to send to nvim-lspconfig
 	-- these override the defaults set by rust-tools.nvim
-	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
 	server = {
 		-- on_attach is a callback called when the language server attachs to the buffer
 		on_attach = on_attach,

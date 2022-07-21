@@ -43,7 +43,6 @@ require('packer').startup(function()
 		'lewis6991/impatient.nvim',
 		'folke/which-key.nvim',
 		'folke/zen-mode.nvim',
-		'kevinhwang91/nvim-hlslens',
 		'kyazdani42/nvim-tree.lua',
 		'kyazdani42/nvim-web-devicons',
 		'lewis6991/gitsigns.nvim',
@@ -53,13 +52,13 @@ require('packer').startup(function()
 		'nvim-lualine/lualine.nvim',
 		'petertriho/nvim-scrollbar',
 		'yamatsum/nvim-cursorline',
-		'SmiteshP/nvim-gps',
+		'SmiteshP/nvim-navic',
 		'lukas-reineke/indent-blankline.nvim',
 		'qpkorr/vim-bufkill',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		'lukas-reineke/lsp-format.nvim',
-
+		'tpope/vim-fugitive',
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -70,6 +69,7 @@ require('packer').startup(function()
 	use {'hrsh7th/cmp-path', branch= 'main'}
 	use {'hrsh7th/cmp-cmdline', branch= 'main'}
 	use {'hrsh7th/nvim-cmp', branch= 'main'}
+	use {'kevinhwang91/nvim-hlslens', branch='main'}
 	if packer_bootstrap then
 		require('packer').sync()
 	end
@@ -208,6 +208,8 @@ nnoremap('<leader>ff', '<cmd>lua tb.find_files()<cr>')
 nnoremap('<leader>fs', '<cmd>lua tb.live_grep()<cr>')
 nnoremap('<leader>fb', '<cmd>lua tb.buffers()<cr>')
 nnoremap('<leader>fc', '<cmd>lua tb.current_buffer_fuzzy_find()<cr>')
+nnoremap('<leader>fr', '<cmd>RustRunnables<cr>')
+nnoremap('<leader>ft', '<cmd>RustTest<cr>')
 nnoremap('<leader>fgc', '<cmd>lua tb.git_commits()<cr>')
 nnoremap('<leader>fgs', '<cmd>lua tb.git_status()<cr>')
 nnoremap('<leader>fgb', '<cmd>lua tb.git_bcommits()<cr>')
@@ -224,9 +226,8 @@ require("which-key").setup( {
 	}
 })
 
--- Nvim GPS - status line component to show where you are in a file
-require("nvim-gps").setup()
-local gps = require("nvim-gps")
+-- Nvim Navic - status line component to show where you are in a file
+local navic = require("nvim-navic")
 
 -- Git git-blame
 require('gitsigns').setup({
@@ -275,7 +276,7 @@ require('lualine').setup({
 	options = { theme = 'onedark'},
 	extensions = {'nvim-tree'},
 	sections = {
-		lualine_c = {'filename', { gps.get_location, cond = gps.is_available } },
+		lualine_c = {'filename', { navic.get_location, cond = navic.is_available } },
 	},
 })
 -- Cokeline - Bufferbar plugin

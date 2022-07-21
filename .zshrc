@@ -6,7 +6,7 @@ eval "$(starship init zsh)"
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
 
 # vim line-editing mode
-bindkey -v
+# bindkey -v
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
@@ -31,6 +31,7 @@ autoload -Uz compinit && compinit
 . "$HOME/.cargo/env"
 alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
 alias cat=bat
+alias nfzf="fzf | xargs -o nvim"
 
 # Grim screenshotting
 export GRIM_DEFAULT_DIR="$HOME/pictures"
@@ -39,7 +40,6 @@ function screenshot() {
 	grim -g "$geo"
 	echo "Screenshot saved in $GRIM_DEFAULT_DIR"
 }
-
 
 export PATH="$PATH:$HOME/bin"
 
@@ -58,3 +58,6 @@ export NVM_DIR="$HOME/.nvm"
 # Add ssh agent
 [ -z "$SSH_AUTH_SOCK" ] && eval `ssh-agent`
 
+
+# Created by `userpath` on 2022-07-12 14:14:25
+export PATH="$PATH:/home/lpraneis/.local/bin"
