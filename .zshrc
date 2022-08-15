@@ -26,7 +26,9 @@ alias vim="nvim"
 alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
 alias nvimconfig="nvim ~/tools/dotfiles/nvim/init.lua"
 
+fpath=(~/tools/completions $fpath)
 autoload -Uz compinit && compinit
+compdef ./target/debug/warp-cli=warp-cli
 
 . "$HOME/.cargo/env"
 alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
@@ -42,6 +44,8 @@ function screenshot() {
 }
 
 export PATH="$PATH:$HOME/bin"
+export EDITOR="nvim"
+bindkey -e
 
 # Go path
 export PATH="$PATH:/usr/local/go/bin"
