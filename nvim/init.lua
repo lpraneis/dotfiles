@@ -58,11 +58,17 @@ require('packer').startup(function()
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		'lukas-reineke/lsp-format.nvim',
-		'tpope/vim-fugitive',
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
+	}
+	 use {
+      'TimUntersberger/neogit', 
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'sindrets/diffview.nvim' 
+      }
 	}
 	use {'hrsh7th/cmp-nvim-lsp', branch= 'main'}
 	use {'hrsh7th/cmp-buffer',  branch= 'main'}
@@ -70,6 +76,15 @@ require('packer').startup(function()
 	use {'hrsh7th/cmp-cmdline', branch= 'main'}
 	use {'hrsh7th/nvim-cmp', branch= 'main'}
 	use {'kevinhwang91/nvim-hlslens', branch='main'}
+	use {
+    "kylechui/nvim-surround",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+	}
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
@@ -148,7 +163,7 @@ nnoremap('<leader>bo', ':w <bar> %bd <bar> e# <bar> bd# <CR>')
 -- Plugin Configurations
 ----------------
 require('base16-colorscheme').setup({
-	base00 = '#181818', base01 = '#353b45', base02 = '#3e4451', base03 = '#545862',
+	base00 = '#121212', base01 = '#353b45', base02 = '#3e4451', base03 = '#545862',
 	base04 = '#565c64', base05 = '#abb2bf', base06 = '#b6bdca', base07 = '#c8ccd4',
 	base08 = '#e06c75', base09 = '#d19a66', base0A = '#e5c07b', base0B = '#98c379',
 	base0C = '#56b6c2', base0D = '#61afef', base0E = '#c678dd', base0F = '#be5046'
@@ -349,6 +364,13 @@ require("scrollbar").setup({
 })
 -- Comment - Comment keymaps for extra powers on what to comment out
 require('Comment').setup()
+
+-- Neogit
+require('diffview').setup()
+require('neogit').setup( {
+  integrations = {
+    diffview = true  
+  }})
 
 require('telescope').setup {
 	defaults = {

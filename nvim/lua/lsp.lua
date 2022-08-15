@@ -8,11 +8,13 @@ vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
 local navic = require("nvim-navic")
 
+local rt = require("rust-tools")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	navic.attach(client, bufnr)
 
 	require "lsp-format".on_attach(client)
 
@@ -21,11 +23,12 @@ local on_attach = function(client, bufnr)
 	-- Mappings.
 	local opts = { noremap=true, silent=true }
 
+	vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap('n', 'go', '<cmd>RustOpenExternalDocs<CR>', opts)
-	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 	buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 	buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -35,6 +38,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 	buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -107,7 +111,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local opts = {
 	tools = {
 		autoSetHints = true,
-		hover_with_actions = true,
 		runnables = {
 			use_telescope = true
 		},
@@ -148,11 +151,19 @@ local opts = {
 	},
 }
 
--- Rust Tools - Setup lsp and more automatically for rust
 require('rust-tools').setup(opts)
 
+
+local gopls_path = os.getenv("HOME") .. "/go/bin/gopls"
 -- Add a go language server
 require'lspconfig'.gopls.setup{ 
-	cmd= {"/home/lpraneis/go/bin/gopls"},
+	cmd= { gopls_path },
+	on_attach = on_attach
+}
+
+local yamlls_path = os.getenv("HOME") .. "/.yarn/bin/yaml-language-server"
+-- YAML language server
+require'lspconfig'.yamlls.setup{
+	cmd = {yamlls_path, "--stdio"},
 	on_attach = on_attach
 }
