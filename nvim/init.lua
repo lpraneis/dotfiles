@@ -58,11 +58,20 @@ require('packer').startup(function()
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		'lukas-reineke/lsp-format.nvim',
+		'mfussenegger/nvim-dap'
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup { }
+  end
+}
 	 use {
       'TimUntersberger/neogit', 
       requires = {
@@ -71,6 +80,7 @@ require('packer').startup(function()
       }
 	}
 	use {'hrsh7th/cmp-nvim-lsp', branch= 'main'}
+	use {'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'}
 	use {'hrsh7th/cmp-buffer',  branch= 'main'}
 	use {'hrsh7th/cmp-path', branch= 'main'}
 	use {'hrsh7th/cmp-cmdline', branch= 'main'}
@@ -150,6 +160,11 @@ nnoremap('<leader>c', ":nohl<CR>")
 
 -- Close the quickfix
 nnoremap('<leader>g', ":cclose<CR>")
+
+-- Trouble Errors
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
+  {silent = true, noremap = true}
+)
 
 -- Map ,e... to edit in new window, split, vertical, tab, from current directory.
 nnoremap('<leader>ew', ':e <C-R>=expand("%:p:h") . "/" <CR>')
