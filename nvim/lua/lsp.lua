@@ -216,11 +216,17 @@ require("dapui").setup({
 
 local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
+	-- Set V to inspect variable under cursor
+	vim.api.nvim_set_keymap("n", "V", '<Cmd>lua require("dapui").eval()<CR>',
+		{silent = true, noremap = true}
+	)
   dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
+	-- Remove V mapping on dap exit
+	vim.api.nvim_del_keymap("n", "V")
   dapui.close()
 end

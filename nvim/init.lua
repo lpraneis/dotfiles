@@ -76,7 +76,6 @@ require('packer').startup(function()
       'TimUntersberger/neogit', 
       requires = {
         'nvim-lua/plenary.nvim',
-        'sindrets/diffview.nvim' 
       }
 	}
 	use {'hrsh7th/cmp-nvim-lsp', branch= 'main'}
@@ -237,6 +236,7 @@ tb = require('telescope.builtin')
 nnoremap('<leader>ff', '<cmd>lua tb.find_files()<cr>')
 nnoremap('<leader>fs', '<cmd>lua tb.live_grep()<cr>')
 nnoremap('<leader>fb', '<cmd>lua tb.buffers()<cr>')
+nnoremap('<leader>fl', '<cmd>lua tb.loclist()<cr>')
 nnoremap('<leader>fc', '<cmd>lua tb.current_buffer_fuzzy_find()<cr>')
 nnoremap('<leader>fr', '<cmd>RustRunnables<cr>')
 nnoremap('<leader>ft', '<cmd>RustTest<cr>')
@@ -381,11 +381,7 @@ require("scrollbar").setup({
 require('Comment').setup()
 
 -- Neogit
-require('diffview').setup()
-require('neogit').setup( {
-  integrations = {
-    diffview = true  
-  }})
+require('neogit').setup({})
 
 require('telescope').setup {
 	defaults = {
