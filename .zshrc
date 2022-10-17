@@ -34,13 +34,12 @@ compdef ./target/debug/warp-cli=warp-cli
 alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
 alias cat=bat
 alias nfzf="fzf | xargs -o nvim"
+alias ls=exa
 
 # Grim screenshotting
-export GRIM_DEFAULT_DIR="$HOME/pictures"
 function screenshot() {
-	geo=$(slurp)
-	grim -g "$geo"
-	echo "Screenshot saved in $GRIM_DEFAULT_DIR"
+	slurp | grim -g - - | wl-copy
+	echo "Screenshot saved to clipboard"
 }
 
 export PATH="$PATH:$HOME/bin"
