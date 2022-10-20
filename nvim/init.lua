@@ -30,7 +30,6 @@ end
 require('packer').startup(function()
 	use {
 		'wbthomason/packer.nvim',
-		'neovim/nvim-lsp',
 		'nvim-lua/plenary.nvim',
 		'nvim-lua/popup.nvim',
 		'neovim/nvim-lspconfig',
@@ -38,15 +37,12 @@ require('packer').startup(function()
 		'nvim-telescope/telescope.nvim',
 		'rust-lang/rust.vim',
 		'simrat39/rust-tools.nvim',
-		'laggardkernel/vim-one',
 		'RRethy/nvim-base16',
 		'lewis6991/impatient.nvim',
 		'folke/which-key.nvim',
-		'folke/zen-mode.nvim',
 		'kyazdani42/nvim-tree.lua',
 		'kyazdani42/nvim-web-devicons',
 		'lewis6991/gitsigns.nvim',
-		'm-demare/hlargs.nvim',
 		'noib3/nvim-cokeline',
 		'numToStr/Comment.nvim',
 		'nvim-lualine/lualine.nvim',
@@ -63,6 +59,10 @@ require('packer').startup(function()
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
+	}
+	use {
+		'm-demare/hlargs.nvim',
+		requires = {"nvim-treesitter/nvim-treesitter"}
 	}
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 	use {
@@ -92,6 +92,24 @@ require('packer').startup(function()
             -- Configuration here, or leave empty to use defaults
         })
     end
+	}
+	use {
+  "folke/todo-comments.nvim",
+  requires = "nvim-lua/plenary.nvim",
+  config = function()
+    require("todo-comments").setup {
+    }
+  end
+	}
+	-- Markdown Previewing
+	use {
+		'toppair/peek.nvim',
+		run = 'deno task --quiet build:fast',
+		config = function()
+			require('peek').setup{
+				auto_load = false
+			}
+		end
 	}
 
 	if packer_bootstrap then
@@ -249,6 +267,9 @@ nnoremap('gr', '<cmd>lua tb.lsp_references()<cr>')
 nnoremap('gi', '<cmd>lua tb.lsp_implementations()<cr>')
 nnoremap('gd', '<cmd>lua tb.lsp_definitions()<cr>')
 
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
 -- Which Key - Helpful pop up of what keybindings exist
 require("which-key").setup( {
 	plugins = {
@@ -365,11 +386,12 @@ parser_config.log = {
 }
 
 -- hlargs - Highlight function args using treesitter
-require('hlargs').setup()
+require('hlargs').setup{
+  extras = {
+    named_parameters = true,
+  }
+}
 
-
--- Zen Mode - Have a moment of zen when writing
-require("zen-mode").setup()
 
 -- Scrollbar - Add a scroll bar to neovim
 require("scrollbar").setup({
@@ -425,8 +447,3 @@ require('telescope').setup {
 -- LSP Plugin Configs --
 -----------------------
 require('lsp')
-
-------------------------
--- Vim Plugin Configs --
-------------------------
--- vim.g.rustfmt_autosave = 1
