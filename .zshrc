@@ -42,6 +42,17 @@ function screenshot() {
 	echo "Screenshot saved to clipboard"
 }
 
+# Clean up branches that are deleted from remote
+function cleanup-local-branches() {
+    branches=$(git branch -vv | grep ': gone]'| grep -v '\*'| awk '{print $1; }')
+		echo "Will delete:\n$branches\n"
+		read "choice?Ok ? (y/N) "
+		case "$choice" in
+			y|Y ) echo $branches | xargs -r git branch -D;;
+			n|N|* ) echo "Not deleting branches";;
+		esac
+}
+
 export PATH="$PATH:$HOME/bin"
 export EDITOR="nvim"
 bindkey -e
