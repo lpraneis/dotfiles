@@ -3,6 +3,7 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local sys = require('sys')
 require("lsp-format").setup {}
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
@@ -142,19 +143,21 @@ local opts = {
 require('rust-tools').setup(opts)
 
 
+
+if not sys.is_windows then
 local gopls_path = os.getenv("HOME") .. "/go/bin/gopls"
 -- Add a go language server
 require'lspconfig'.gopls.setup{ 
 	cmd= { gopls_path },
 	on_attach = on_attach
 }
-
 local yamlls_path = os.getenv("HOME") .. "/.yarn/bin/yaml-language-server"
 -- YAML language server
 require'lspconfig'.yamlls.setup{
 	cmd = {yamlls_path, "--stdio"},
 	on_attach = on_attach
 }
+end
 
 -- DAP debugging
 require("dapui").setup({

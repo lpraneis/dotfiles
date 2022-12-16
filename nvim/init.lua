@@ -2,7 +2,13 @@ require('impatient')
 ----------------
 -- Local imports
 ----------------
+if vim.fn.has('unix') == 1 then
 package.path = package.path .. ";/home/lpraneis/tools/dotfiles/nvim/lua/?.lua"
+elseif vim.fn.has('win32') == 1 then
+package.path = package.path .. ";C:\\Users\\LoganPraneis\\tools\\dotfiles\\nvim\\lua\\?.lua"
+
+end
+
 local sys = require('sys')
 local maps = require('maps')
 local fs = require('fs')
