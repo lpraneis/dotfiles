@@ -273,6 +273,7 @@ nnoremap('gr', '<cmd>lua tb.lsp_references()<cr>')
 nnoremap('gi', '<cmd>lua tb.lsp_implementations()<cr>')
 nnoremap('gd', '<cmd>lua tb.lsp_definitions()<cr>')
 
+-- Markdown rendering
 vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
 vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
 
@@ -368,18 +369,12 @@ require('indent_blankline').setup({
 	show_current_context_start = true,
 })
 
--- NVIM TreeSitter - Treesitter configs
-require('nvim-treesitter.configs').setup {
-	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "log", "go"},
-	highlight = {
-		enable = true,
-	},
-}
+
 -- NOTE: Tree sitter is dumb, so the highlights.scm file should manually be symlinked
 -- to a version in a checked-out version of this repo. 
 -- TODO: Auto download the highlights file
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.log = {
+parser_config.tracinglog = {
   install_info = {
     url = "https://github.com/lpraneis/tree-sitter-tracing-log",
     files = {"src/parser.c"},
@@ -389,6 +384,14 @@ parser_config.log = {
     requires_generate_from_grammar = true,
   },
   filetype = "log",
+}
+
+-- NVIM TreeSitter - Treesitter configs
+require('nvim-treesitter.configs').setup {
+	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go"},
+	highlight = {
+		enable = true,
+	},
 }
 
 -- hlargs - Highlight function args using treesitter
