@@ -1,4 +1,3 @@
-require('impatient')
 ----------------
 -- Local imports
 ----------------
@@ -28,100 +27,87 @@ local vnoremap = maps.vnoremap
 
 local map = vim.api.nvim_set_keymap
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then 
-	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+-- Shortcuts
+vim.g.mapleader=','
 
-require('packer').startup(function()
-	use {
-		'wbthomason/packer.nvim',
-		'nvim-lua/plenary.nvim',
-		'nvim-lua/popup.nvim',
-		'neovim/nvim-lspconfig',
-		'nvim-telescope/telescope-ui-select.nvim',
-		'nvim-telescope/telescope.nvim',
-		'rust-lang/rust.vim',
-		'simrat39/rust-tools.nvim',
-		'RRethy/nvim-base16',
-		'lewis6991/impatient.nvim',
-		'folke/which-key.nvim',
-		'kyazdani42/nvim-tree.lua',
-		'kyazdani42/nvim-web-devicons',
-		'lewis6991/gitsigns.nvim',
-		'noib3/nvim-cokeline',
-		'numToStr/Comment.nvim',
-		'nvim-lualine/lualine.nvim',
-		'petertriho/nvim-scrollbar',
-		'yamatsum/nvim-cursorline',
-		'SmiteshP/nvim-navic',
-		'lukas-reineke/indent-blankline.nvim',
-		'qpkorr/vim-bufkill',
-		'L3MON4D3/LuaSnip',
-		'saadparwaiz1/cmp_luasnip',
-		'lukas-reineke/lsp-format.nvim',
-		'mfussenegger/nvim-dap'
-	}
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
-	use {
-		'm-demare/hlargs.nvim',
-		requires = {"nvim-treesitter/nvim-treesitter"}
-	}
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-	use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup { }
-  end
-}
-	 use {
-      'TimUntersberger/neogit', 
-      requires = {
-        'nvim-lua/plenary.nvim',
-      }
-	}
-	use {'hrsh7th/cmp-nvim-lsp', branch= 'main'}
-	use {'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'}
-	use {'hrsh7th/cmp-buffer',  branch= 'main'}
-	use {'hrsh7th/cmp-path', branch= 'main'}
-	use {'hrsh7th/cmp-cmdline', branch= 'main'}
-	use {'hrsh7th/nvim-cmp', branch= 'main'}
-	use {'kevinhwang91/nvim-hlslens', branch='main'}
-	use {
-    "kylechui/nvim-surround",
-    config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
-	}
-	use {
-  "folke/todo-comments.nvim",
-  requires = "nvim-lua/plenary.nvim",
-  config = function()
-    require("todo-comments").setup {
-    }
-  end
-	}
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({
+	'nvim-lua/plenary.nvim',
+	'nvim-lua/popup.nvim',
+	'neovim/nvim-lspconfig',
+	'nvim-telescope/telescope-ui-select.nvim',
+	'nvim-telescope/telescope.nvim',
+	'rust-lang/rust.vim',
+	'simrat39/rust-tools.nvim',
+	'RRethy/nvim-base16',
+	'folke/which-key.nvim',
+	'kyazdani42/nvim-tree.lua',
+	'kyazdani42/nvim-web-devicons',
+	'lewis6991/gitsigns.nvim',
+	'noib3/nvim-cokeline',
+	'numToStr/Comment.nvim',
+	'nvim-lualine/lualine.nvim',
+	'petertriho/nvim-scrollbar',
+	'yamatsum/nvim-cursorline',
+	'SmiteshP/nvim-navic',
+	'lukas-reineke/indent-blankline.nvim',
+	'qpkorr/vim-bufkill',
+	'L3MON4D3/LuaSnip',
+	'saadparwaiz1/cmp_luasnip',
+	'lukas-reineke/lsp-format.nvim',
+	'mfussenegger/nvim-dap',
+	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+	{ 'm-demare/hlargs.nvim', dependencies = {"nvim-treesitter/nvim-treesitter"} },
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+	{ "folke/trouble.nvim", 
+			dependencies = "kyazdani42/nvim-web-devicons", 
+			config = function() require("trouble").setup { } end 
+	},
+	{ 'TimUntersberger/neogit', dependencies = { 'nvim-lua/plenary.nvim', } },
+	{'hrsh7th/cmp-nvim-lsp', branch= 'main'},
+	{'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'},
+	{'hrsh7th/cmp-buffer',  branch= 'main'},
+	{'hrsh7th/cmp-path', branch= 'main'},
+	{'hrsh7th/cmp-cmdline', branch= 'main'},
+	{'hrsh7th/nvim-cmp', branch= 'main'},
+	{'kevinhwang91/nvim-hlslens', branch='main'},
+	{
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({ }) end
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup {
+			}
+		end
+	},
 	-- Markdown Previewing
-	use {
+	{
 		'toppair/peek.nvim',
-		run = 'deno task --quiet build:fast',
+		build = 'deno task --quiet build:fast',
 		config = function()
 			require('peek').setup{
 				auto_load = false
 			}
 		end
-	}
-
-	if packer_bootstrap then
-		require('packer').sync()
-	end
-end)
+	},
+}
+)
 
 -- Global
 o.autoindent = true
@@ -167,16 +153,13 @@ o.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Colorscheme
 vim.g.base16colorspace = 256
-vim.cmd('filetype plugin indent on')
 
 -- Autocmd
-vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
-vim.cmd('autocmd BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us')
-vim.cmd('autocmd BufRead * normal zR')
-vim.cmd('autocmd BufRead *.log set filetype=log')
+vim.api.nvim_create_autocmd({"BufRead"}, {
+	pattern = {"*.log"},
+	callback = function() vim.bo.filetype = "log" end,
+})
 
--- Shortcuts
-vim.g.mapleader=','
 
 -- Get rid of search highlighting
 nnoremap('<leader>c', ":nohl<CR>")
