@@ -222,4 +222,10 @@ bar {
 # Disable title bar and instead use a 2 pixel border
 default_border pixel 2
 
+input "type:keyboard" {
+	xkb_layout us,de
+	xkb_variant ,nodeadkeys
+	xkb_options ctrl:nocaps
+}
+
 include /etc/sway/config.d/*

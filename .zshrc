@@ -1,12 +1,13 @@
 # starship
 eval "$(starship init zsh)"
+
 # history file config
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
 
-# vim line-editing mode
-# bindkey -v
+fpath=(~/tools/completions $fpath)
+autoload -Uz compinit && compinit
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
@@ -26,12 +27,10 @@ alias vim="nvim"
 alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
 alias nvimconfig="nvim ~/tools/dotfiles/nvim/init.lua"
 
-fpath=(~/tools/completions $fpath)
-autoload -Uz compinit && compinit
-compdef ./target/debug/warp-cli=warp-cli
+# Source some device-specific options
+[ -f "$HOME/.zshrc-specific" ] && source ~/.zshrc-specific
 
 . "$HOME/.cargo/env"
-alias cgi="curl https://www.cloudflare.com/cdn-cgi/trace"
 alias cat=bat
 alias nfzf="fzf | xargs -o nvim"
 alias ls=exa

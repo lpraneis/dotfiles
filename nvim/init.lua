@@ -352,7 +352,6 @@ require('indent_blankline').setup({
 	show_current_context_start = true,
 })
 
-
 -- NOTE: Tree sitter is dumb, so the highlights.scm file should manually be symlinked
 -- to a version in a checked-out version of this repo. 
 -- TODO: Auto download the highlights file
@@ -360,6 +359,7 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tracinglog = {
   install_info = {
     url = "https://github.com/lpraneis/tree-sitter-tracing-log",
+		-- url = "~/tools/tree-sitter-tracing-log",
     files = {"src/parser.c"},
     -- optional entries:
     branch = "main",
