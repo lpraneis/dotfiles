@@ -1,11 +1,4 @@
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local sys = require('sys')
 require("lsp-format").setup {}
-vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
 local navic = require("nvim-navic")
 
@@ -14,15 +7,12 @@ local rt = require("rust-tools")
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 	navic.attach(client, bufnr)
 
 	require "lsp-format".on_attach(client)
 
-	-- Enable completion triggered by <c-x><c-o>
-
 	-- Mappings.
-	local opts = { noremap=true, silent=true }
+	local opts = { noremap = true, silent = true }
 
 	vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
 
@@ -38,15 +28,10 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 	buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
--- Setup nvim-cmp.
-
-local cmp = require'cmp'
-local luasnip = require'luasnip'
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
 
 cmp.setup({
 	snippet = {
@@ -64,7 +49,7 @@ cmp.setup({
 		-- Add tab support
 		['<S-Tab>'] = cmp.mapping.select_prev_item(),
 		['<Tab>'] = cmp.mapping.select_next_item(),
-		['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
+		['<C-S-f>'] = cmp.mapping.scroll_docs( -4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.close(),
@@ -73,7 +58,6 @@ cmp.setup({
 			select = true,
 		})
 	},
-
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
@@ -107,7 +91,6 @@ require('rust-tools').setup({
 		},
 	},
 	capabilities = capabilities,
-
 	-- all the opts to send to nvim-lspconfig
 	-- these override the defaults set by rust-tools.nvim
 	server = {
@@ -138,21 +121,47 @@ require('rust-tools').setup({
 	},
 	dap = {
 		adapter = require('rust-tools.dap').get_codelldb_adapter(
-		dap_codelldb_path, dap_liblldb_path)
+			dap_codelldb_path, dap_liblldb_path)
 	}
 })
 
 
 
 -- Add a go language server
-require'lspconfig'.gopls.setup{ 
+require 'lspconfig'.gopls.setup {
 	on_attach = on_attach
 }
 
 -- YAML language server
-require'lspconfig'.yamlls.setup{
+require 'lspconfig'.yamlls.setup {
 	on_attach = on_attach
 }
+
+-- lua language server
+require 'lspconfig'.lua_ls.setup {
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { 'vim' },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}
+
 
 -- DAP debugging
 require("dapui").setup({
@@ -215,7 +224,7 @@ local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	-- Set V to inspect variable under cursor
 	vim.api.nvim_set_keymap("n", "V", '<Cmd>lua require("dapui").eval()<CR>',
-	{silent = true, noremap = true}
+		{ silent = true, noremap = true }
 	)
 	dapui.open()
 end
@@ -227,3 +236,5 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	vim.api.nvim_del_keymap("n", "V")
 	dapui.close()
 end
+
+vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]

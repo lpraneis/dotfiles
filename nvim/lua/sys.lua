@@ -1,19 +1,19 @@
-if vim.fn.has('mac') == 1 then 
-	macos = true
-	linux = false
-	windows = false
-elseif vim.fn.has('unix') == 1 then 
-	macos = false
-	linux = true
-	windows = false
-elseif vim.fn.has('win32') == 1 then 
-	macos = false
-	linux = false
-	windows = true
+if vim.fn.has('mac') == 1 then
+	Macos = true
+	Linux = false
+	Windows = false
+elseif vim.fn.has('unix') == 1 then
+	Macos = false
+	Linux = true
+	Windows = false
+elseif vim.fn.has('win32') == 1 then
+	Macos = false
+	Linux = false
+	Windows = true
 end
 
 return {
-	is_macos = macos,
-	is_linux = linux,
-	is_windows = windows,
+	is_macos = Macos,
+	is_linux = Linux,
+	is_windows = Windows,
 }

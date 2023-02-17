@@ -1,2 +1,3 @@
 
 *.bak
+nvim/lua/.luarc.json

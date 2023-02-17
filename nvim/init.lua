@@ -5,7 +5,6 @@ if vim.fn.has('unix') == 1 then
 	package.path = package.path .. ";/home/lpraneis/tools/dotfiles/nvim/lua/?.lua"
 elseif vim.fn.has('win32') == 1 then
 	package.path = package.path .. ";C:\\Users\\LoganPraneis\\tools\\dotfiles\\nvim\\lua\\?.lua"
-
 end
 
 local sys = require('sys')
@@ -13,22 +12,13 @@ local maps = require('maps')
 local fs = require('fs')
 
 
-local execute = vim.api.nvim_command
-local fn = vim.fn
 local o = vim.o
 local wo = vim.wo
-local bo = vim.bo
-
-local nmap = maps.nmap
 local nnoremap = maps.nnoremap
-local noremap = maps.noremap
-local vmap = maps.vmap
-local vnoremap = maps.vnoremap
-
 local map = vim.api.nvim_set_keymap
 
 -- Shortcuts
-vim.g.mapleader=','
+vim.g.mapleader = ','
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -69,26 +59,27 @@ require('lazy').setup({
 	'L3MON4D3/LuaSnip',
 	'saadparwaiz1/cmp_luasnip',
 	'lukas-reineke/lsp-format.nvim',
-	{ 'mfussenegger/nvim-dap', lazy = true },
+	{ 'mfussenegger/nvim-dap',           lazy = true },
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-	{ 'm-demare/hlargs.nvim', dependencies = {"nvim-treesitter/nvim-treesitter"} },
-	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
-	{ "folke/trouble.nvim", 
-	dependencies = "kyazdani42/nvim-web-devicons", 
-	config = function() require("trouble").setup { } end 
-},
-{ 'TimUntersberger/neogit', dependencies = { 'nvim-lua/plenary.nvim', } },
-{'hrsh7th/cmp-nvim-lsp', branch= 'main'},
-{'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'},
-{'hrsh7th/cmp-buffer',  branch= 'main'},
-{'hrsh7th/cmp-path', branch= 'main'},
-{'hrsh7th/cmp-cmdline', branch= 'main'},
-{'hrsh7th/nvim-cmp', branch= 'main'},
-{'kevinhwang91/nvim-hlslens', branch='main'},
-{
-	"kylechui/nvim-surround",
-	config = function()
-		require("nvim-surround").setup({ }) end
+	{ 'm-demare/hlargs.nvim',            dependencies = { "nvim-treesitter/nvim-treesitter" } },
+	{ "rcarriga/nvim-dap-ui",            dependencies = { "mfussenegger/nvim-dap" } },
+	{ "folke/trouble.nvim",
+		dependencies = "kyazdani42/nvim-web-devicons",
+		config = function() require("trouble").setup {} end
+	},
+	{ 'TimUntersberger/neogit',              dependencies = { 'nvim-lua/plenary.nvim', } },
+	{ 'hrsh7th/cmp-nvim-lsp',                branch = 'main' },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help', branch = 'main' },
+	{ 'hrsh7th/cmp-buffer',                  branch = 'main' },
+	{ 'hrsh7th/cmp-path',                    branch = 'main' },
+	{ 'hrsh7th/cmp-cmdline',                 branch = 'main' },
+	{ 'hrsh7th/nvim-cmp',                    branch = 'main' },
+	{ 'kevinhwang91/nvim-hlslens',           branch = 'main' },
+	{
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end
 	},
 	{
 		"folke/todo-comments.nvim",
@@ -103,7 +94,7 @@ require('lazy').setup({
 		'toppair/peek.nvim',
 		build = 'deno task --quiet build:fast',
 		config = function()
-			require('peek').setup{
+			require('peek').setup {
 				auto_load = false
 			}
 		end,
@@ -124,7 +115,7 @@ o.hlsearch = true
 o.ignorecase = true
 o.incsearch = true
 o.shiftwidth = 2
-o.shortmess="Sc"
+o.shortmess = "Sc"
 o.showmatch = true
 o.smartindent = true
 o.softtabstop = 2
@@ -152,14 +143,14 @@ wo.number = true
 wo.relativenumber = true
 wo.wrap = true
 o.foldmethod = 'expr'
-o.foldexpr='nvim_treesitter#foldexpr()'
+o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Colorscheme
 vim.g.base16colorspace = 256
 
 -- Autocmd
-vim.api.nvim_create_autocmd({"BufRead"}, {
-	pattern = {"*.log"},
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+	pattern = { "*.log" },
 	callback = function() vim.bo.filetype = "log" end,
 })
 
@@ -172,7 +163,7 @@ nnoremap('<leader>g', ":cclose<CR>")
 
 -- Trouble Errors
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
-{silent = true, noremap = true}
+	{ silent = true, noremap = true }
 )
 
 -- Map ,e... to edit in new window, split, vertical, tab, from current directory.
@@ -187,10 +178,22 @@ nnoremap('<leader>bo', ':w <bar> %bd <bar> e# <bar> bd# <CR>')
 -- Plugin Configurations
 ----------------
 require('base16-colorscheme').setup({
-	base00 = '#121212', base01 = '#353b45', base02 = '#3e4451', base03 = '#545862',
-	base04 = '#565c64', base05 = '#abb2bf', base06 = '#b6bdca', base07 = '#c8ccd4',
-	base08 = '#e06c75', base09 = '#d19a66', base0A = '#e5c07b', base0B = '#98c379',
-	base0C = '#56b6c2', base0D = '#61afef', base0E = '#c678dd', base0F = '#be5046'
+	base00 = '#121212',
+	base01 = '#353b45',
+	base02 = '#3e4451',
+	base03 = '#545862',
+	base04 = '#565c64',
+	base05 = '#abb2bf',
+	base06 = '#b6bdca',
+	base07 = '#c8ccd4',
+	base08 = '#e06c75',
+	base09 = '#d19a66',
+	base0A = '#e5c07b',
+	base0B = '#98c379',
+	base0C = '#56b6c2',
+	base0D = '#61afef',
+	base0E = '#c678dd',
+	base0F = '#be5046'
 })
 require('nvim-tree').setup()
 nnoremap('<C-n>', ':NvimTreeToggle<CR>')
@@ -264,7 +267,7 @@ vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
 vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
 
 -- Which Key - Helpful pop up of what keybindings exist
-require("which-key").setup( {
+require("which-key").setup({
 	plugins = {
 		spelling = {
 			enabled = true,
@@ -292,38 +295,38 @@ require('gitsigns').setup({
 			if vim.wo.diff then return ']c' end
 			vim.schedule(function() gs.next_hunk() end)
 			return '<Ignore>'
-		end, {expr=true})
+		end, { expr = true })
 
 		map('n', '[c', function()
 			if vim.wo.diff then return '[c' end
 			vim.schedule(function() gs.prev_hunk() end)
 			return '<Ignore>'
-		end, {expr=true})
+		end, { expr = true })
 
 		-- Actions
-		map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-		map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+		map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+		map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
 		map('n', '<leader>hS', gs.stage_buffer)
 		map('n', '<leader>hu', gs.undo_stage_hunk)
 		map('n', '<leader>hR', gs.reset_buffer)
 		map('n', '<leader>hp', gs.preview_hunk)
-		map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+		map('n', '<leader>hb', function() gs.blame_line { full = true } end)
 		map('n', '<leader>tb', gs.toggle_current_line_blame)
 		map('n', '<leader>hd', gs.diffthis)
 		map('n', '<leader>hD', function() gs.diffthis('~') end)
 		map('n', '<leader>td', gs.toggle_deleted)
 
 		-- Text object
-		map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+		map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 	end
 })
 
 -- Lualine - status line plugin
 require('lualine').setup({
-	options = { theme = 'onedark'},
-	extensions = {'nvim-tree'},
+	options = { theme = 'onedark' },
+	extensions = { 'nvim-tree' },
 	sections = {
-		lualine_c = {'filename', { navic.get_location, cond = navic.is_available } },
+		lualine_c = { 'filename', { navic.get_location, cond = navic.is_available } },
 	},
 })
 -- Cokeline - Bufferbar plugin
@@ -339,13 +342,13 @@ require('cokeline').setup({
 	},
 })
 -- Map H,L to buffer change ( mimic tabs, but better )
-map('n', 'H', '<Plug>(cokeline-focus-prev)', {silent = true})
-map('n', 'L', '<Plug>(cokeline-focus-next)', {silent = true})
+map('n', 'H', '<Plug>(cokeline-focus-prev)', { silent = true })
+map('n', 'L', '<Plug>(cokeline-focus-next)', { silent = true })
 
-map('n', '<C-j>', '<C-w><C-j>', {silent = true})
-map('n', '<C-k>', '<C-w><C-k>', {silent = true})
-map('n', '<C-l>', '<C-w><C-l>', {silent = true})
-map('n', '<C-h>', '<C-w><C-h>', {silent = true})
+map('n', '<C-j>', '<C-w><C-j>', { silent = true })
+map('n', '<C-k>', '<C-w><C-k>', { silent = true })
+map('n', '<C-l>', '<C-w><C-l>', { silent = true })
+map('n', '<C-h>', '<C-w><C-h>', { silent = true })
 
 -- Indent Blankline - Show indentation and what block your in
 vim.opt.list = true
@@ -356,14 +359,14 @@ require('indent_blankline').setup({
 })
 
 -- NOTE: Tree sitter is dumb, so the highlights.scm file should manually be symlinked
--- to a version in a checked-out version of this repo. 
+-- to a version in a checked-out version of this repo.
 -- TODO: Auto download the highlights file
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tracinglog = {
 	install_info = {
 		url = "https://github.com/lpraneis/tree-sitter-tracing-log",
 		-- url = "~/tools/tree-sitter-tracing-log",
-		files = {"src/parser.c"},
+		files = { "src/parser.c" },
 		-- optional entries:
 		branch = "main",
 		generate_requires_npm = false,
@@ -374,14 +377,14 @@ parser_config.tracinglog = {
 
 -- NVIM TreeSitter - Treesitter configs
 require('nvim-treesitter.configs').setup {
-	ensure_installed = {"rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go"},
+	ensure_installed = { "rust", "c", "markdown", "lua", "html", "http", "json", "json5", "latex", "llvm", "make", "regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go" },
 	highlight = {
 		enable = true,
 	},
 }
 
 -- hlargs - Highlight function args using treesitter
-require('hlargs').setup{
+require('hlargs').setup {
 	extras = {
 		named_parameters = true,
 	}
