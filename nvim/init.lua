@@ -2,9 +2,9 @@
 -- Local imports
 ----------------
 if vim.fn.has('unix') == 1 then
-package.path = package.path .. ";/home/lpraneis/tools/dotfiles/nvim/lua/?.lua"
+	package.path = package.path .. ";/home/lpraneis/tools/dotfiles/nvim/lua/?.lua"
 elseif vim.fn.has('win32') == 1 then
-package.path = package.path .. ";C:\\Users\\LoganPraneis\\tools\\dotfiles\\nvim\\lua\\?.lua"
+	package.path = package.path .. ";C:\\Users\\LoganPraneis\\tools\\dotfiles\\nvim\\lua\\?.lua"
 
 end
 
@@ -32,14 +32,14 @@ vim.g.mapleader=','
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -74,21 +74,21 @@ require('lazy').setup({
 	{ 'm-demare/hlargs.nvim', dependencies = {"nvim-treesitter/nvim-treesitter"} },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
 	{ "folke/trouble.nvim", 
-			dependencies = "kyazdani42/nvim-web-devicons", 
-			config = function() require("trouble").setup { } end 
-	},
-	{ 'TimUntersberger/neogit', dependencies = { 'nvim-lua/plenary.nvim', } },
-	{'hrsh7th/cmp-nvim-lsp', branch= 'main'},
-	{'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'},
-	{'hrsh7th/cmp-buffer',  branch= 'main'},
-	{'hrsh7th/cmp-path', branch= 'main'},
-	{'hrsh7th/cmp-cmdline', branch= 'main'},
-	{'hrsh7th/nvim-cmp', branch= 'main'},
-	{'kevinhwang91/nvim-hlslens', branch='main'},
-	{
-		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup({ }) end
+	dependencies = "kyazdani42/nvim-web-devicons", 
+	config = function() require("trouble").setup { } end 
+},
+{ 'TimUntersberger/neogit', dependencies = { 'nvim-lua/plenary.nvim', } },
+{'hrsh7th/cmp-nvim-lsp', branch= 'main'},
+{'hrsh7th/cmp-nvim-lsp-signature-help', branch= 'main'},
+{'hrsh7th/cmp-buffer',  branch= 'main'},
+{'hrsh7th/cmp-path', branch= 'main'},
+{'hrsh7th/cmp-cmdline', branch= 'main'},
+{'hrsh7th/nvim-cmp', branch= 'main'},
+{'kevinhwang91/nvim-hlslens', branch='main'},
+{
+	"kylechui/nvim-surround",
+	config = function()
+		require("nvim-surround").setup({ }) end
 	},
 	{
 		"folke/todo-comments.nvim",
@@ -142,9 +142,9 @@ elseif sys.is_windows then
 end
 -- Keep undo history across sessions by storing it in a file
 if fs.does_not_exist(o.undodir) and (sys.is_linux or sys.is_macos) then
-  os.execute('mkdir -p' .. o.undodir .. '-m=0770')
+	os.execute('mkdir -p' .. o.undodir .. '-m=0770')
 elseif fs.does_not_exist(o.undodir) and sys.is_windows then
-  os.execute('mkdir ' .. o.undodir)
+	os.execute('mkdir ' .. o.undodir)
 end
 
 -- Window Local
@@ -172,7 +172,7 @@ nnoremap('<leader>g', ":cclose<CR>")
 
 -- Trouble Errors
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
-  {silent = true, noremap = true}
+{silent = true, noremap = true}
 )
 
 -- Map ,e... to edit in new window, split, vertical, tab, from current directory.
@@ -231,12 +231,12 @@ require('telescope').setup {
 			}
 		}
 	},
-	 extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-      }
-    }
-  }
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown {
+			}
+		}
+	}
 
 }
 
@@ -278,44 +278,44 @@ local navic = require("nvim-navic")
 
 -- Git git-blame
 require('gitsigns').setup({
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+	on_attach = function(bufnr)
+		local gs = package.loaded.gitsigns
 
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
 
-    -- Navigation
-    map('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+		-- Navigation
+		map('n', ']c', function()
+			if vim.wo.diff then return ']c' end
+			vim.schedule(function() gs.next_hunk() end)
+			return '<Ignore>'
+		end, {expr=true})
 
-    map('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+		map('n', '[c', function()
+			if vim.wo.diff then return '[c' end
+			vim.schedule(function() gs.prev_hunk() end)
+			return '<Ignore>'
+		end, {expr=true})
 
-    -- Actions
-    map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-    map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-    map('n', '<leader>hS', gs.stage_buffer)
-    map('n', '<leader>hu', gs.undo_stage_hunk)
-    map('n', '<leader>hR', gs.reset_buffer)
-    map('n', '<leader>hp', gs.preview_hunk)
-    map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-    map('n', '<leader>tb', gs.toggle_current_line_blame)
-    map('n', '<leader>hd', gs.diffthis)
-    map('n', '<leader>hD', function() gs.diffthis('~') end)
-    map('n', '<leader>td', gs.toggle_deleted)
+		-- Actions
+		map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+		map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+		map('n', '<leader>hS', gs.stage_buffer)
+		map('n', '<leader>hu', gs.undo_stage_hunk)
+		map('n', '<leader>hR', gs.reset_buffer)
+		map('n', '<leader>hp', gs.preview_hunk)
+		map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+		map('n', '<leader>tb', gs.toggle_current_line_blame)
+		map('n', '<leader>hd', gs.diffthis)
+		map('n', '<leader>hD', function() gs.diffthis('~') end)
+		map('n', '<leader>td', gs.toggle_deleted)
 
-    -- Text object
-    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-  end
+		-- Text object
+		map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+	end
 })
 
 -- Lualine - status line plugin
@@ -360,16 +360,16 @@ require('indent_blankline').setup({
 -- TODO: Auto download the highlights file
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tracinglog = {
-  install_info = {
-    url = "https://github.com/lpraneis/tree-sitter-tracing-log",
+	install_info = {
+		url = "https://github.com/lpraneis/tree-sitter-tracing-log",
 		-- url = "~/tools/tree-sitter-tracing-log",
-    files = {"src/parser.c"},
-    -- optional entries:
-    branch = "main",
-    generate_requires_npm = false,
-    requires_generate_from_grammar = true,
-  },
-  filetype = "log",
+		files = {"src/parser.c"},
+		-- optional entries:
+		branch = "main",
+		generate_requires_npm = false,
+		requires_generate_from_grammar = true,
+	},
+	filetype = "log",
 }
 
 -- NVIM TreeSitter - Treesitter configs
@@ -382,9 +382,9 @@ require('nvim-treesitter.configs').setup {
 
 -- hlargs - Highlight function args using treesitter
 require('hlargs').setup{
-  extras = {
-    named_parameters = true,
-  }
+	extras = {
+		named_parameters = true,
+	}
 }
 
 
