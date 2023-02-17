@@ -35,6 +35,10 @@ alias cat=bat
 alias nfzf="fzf | xargs -o nvim"
 alias ls=exa
 
+# Use fd by default ( with colors ) 
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+
 # Grim screenshotting
 function screenshot() {
 	slurp | grim -g - - | wl-copy
