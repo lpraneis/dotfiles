@@ -46,6 +46,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	'nvim-lua/plenary.nvim',
 	'nvim-lua/popup.nvim',
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
 	'neovim/nvim-lspconfig',
 	'nvim-telescope/telescope-ui-select.nvim',
 	'nvim-telescope/telescope.nvim',
@@ -67,7 +69,7 @@ require('lazy').setup({
 	'L3MON4D3/LuaSnip',
 	'saadparwaiz1/cmp_luasnip',
 	'lukas-reineke/lsp-format.nvim',
-	'mfussenegger/nvim-dap',
+	{ 'mfussenegger/nvim-dap', lazy = true },
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'm-demare/hlargs.nvim', dependencies = {"nvim-treesitter/nvim-treesitter"} },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
@@ -104,7 +106,8 @@ require('lazy').setup({
 			require('peek').setup{
 				auto_load = false
 			}
-		end
+		end,
+		lazy = true
 	},
 }
 )

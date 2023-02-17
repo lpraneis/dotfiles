@@ -86,7 +86,12 @@ cmp.setup({
 })
 
 
--- Setup lspconfig.
+-- Setup lspconfig
+require("mason").setup()
+require("mason-lspconfig").setup {
+	ensure_installed = { "lua_ls", "yamlls", "gopls" }
+}
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local dap_extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
@@ -139,20 +144,15 @@ require('rust-tools').setup({
 
 
 
-if not sys.is_windows then
-local gopls_path = os.getenv("HOME") .. "/go/bin/gopls"
 -- Add a go language server
 require'lspconfig'.gopls.setup{ 
-	cmd= { gopls_path },
 	on_attach = on_attach
 }
-local yamlls_path = os.getenv("HOME") .. "/.yarn/bin/yaml-language-server"
+
 -- YAML language server
 require'lspconfig'.yamlls.setup{
-	cmd = {yamlls_path, "--stdio"},
 	on_attach = on_attach
 }
-end
 
 -- DAP debugging
 require("dapui").setup({
