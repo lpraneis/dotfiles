@@ -1,7 +1,7 @@
 local nnoremap = require 'maps'.nnoremap
 
 return {
-	{ 'nvim-telescope/telescope.nvim', dependencies = "nvim-telescope/telescope-ui-select.nvim", config = function()
+	{ 'nvim-telescope/telescope.nvim', dependencies = { "nvim-telescope/telescope-ui-select.nvim", "nvim-lua/plenary.nvim" }, config = function()
 		require('telescope').setup {
 			defaults = {
 				mappings = {
@@ -42,7 +42,6 @@ return {
 					}
 				}
 			}
-
 		}
 		require('telescope').load_extension('ui-select')
 		nnoremap('<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
