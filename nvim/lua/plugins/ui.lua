@@ -32,7 +32,6 @@ return {
 			}
 		})
 	end },
-
 	{ 'nvim-tree/nvim-tree.lua', config = function()
 		require('nvim-tree').setup()
 		nnoremap('<C-n>', ':NvimTreeToggle<CR>')
@@ -101,15 +100,6 @@ return {
 			)
 		end
 	},
-	{
-		"folke/todo-comments.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup {
-			}
-		end
-	},
-	{ 'TimUntersberger/neogit', dependencies = { 'nvim-lua/plenary.nvim', }, config = function()
-		require('neogit').setup({})
-	end },
+	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", config = true },
+	{ 'TimUntersberger/neogit',   dependencies = 'nvim-lua/plenary.nvim', config = true },
 }

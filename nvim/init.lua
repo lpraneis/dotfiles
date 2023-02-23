@@ -1,6 +1,3 @@
-----------------
--- Local imports
-----------------
 local sys = require('sys')
 local maps = require('maps')
 local fs = require('fs')
@@ -10,7 +7,6 @@ local wo = vim.wo
 local nnoremap = maps.nnoremap
 local map = vim.api.nvim_set_keymap
 
--- Shortcuts
 vim.g.mapleader = ','
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -26,8 +22,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Use lua/plugins/*.lua to split up plugin load
 require('lazy').setup("plugins",
 	{
+		-- simplify some of the icons
 		ui = {
 			icons = {
 				cmd = "",
@@ -56,7 +54,7 @@ require('lazy').setup("plugins",
 	}
 )
 
--- Global
+-- Global vim settings
 o.autoindent = true
 o.autoread = true
 o.autowrite = true
@@ -84,6 +82,7 @@ if sys.is_linux or sys.is_macos then
 elseif sys.is_windows then
 	o.undodir = fn.stdpath('data') .. '\\undo-dir'
 end
+
 -- Keep undo history across sessions by storing it in a file
 if fs.does_not_exist(o.undodir) and (sys.is_linux or sys.is_macos) then
 	os.execute('mkdir -p' .. o.undodir .. '-m=0770')
@@ -96,12 +95,14 @@ wo.number = true
 wo.relativenumber = true
 wo.wrap = true
 o.foldmethod = 'expr'
+
+-- Use treesitter for fold expressions
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Colorscheme
 vim.g.base16colorspace = 256
 
--- Autocmd
+-- Autocmd to set *.log files to type log
 vim.api.nvim_create_autocmd({ "BufRead" }, {
 	pattern = { "*.log" },
 	callback = function() vim.bo.filetype = "log" end,
@@ -129,7 +130,6 @@ map('n', '<C-h>', '<C-w><C-h>', { silent = true })
 
 -- Indent Blankline - Show indentation and what block your in
 vim.opt.list = true
-
 
 ------------------------
 -- LSP Plugin Configs --
