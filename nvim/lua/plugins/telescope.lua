@@ -11,16 +11,6 @@ return {
 							["<C-h>"] = "which_key"
 						}
 					},
-					vimgrep_arguments = {
-						"rg",
-						"--color=never",
-						"--no-heading",
-						"--with-filename",
-						"--line-number",
-						"--column",
-						"--type-not swift",
-						"--smart-case"
-					}
 				},
 				pickers = {
 					buffers = {
