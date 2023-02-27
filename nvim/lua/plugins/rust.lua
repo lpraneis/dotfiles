@@ -150,6 +150,7 @@ return {
 			})
 			nnoremap('<leader>fr', '<cmd>RustRunnables<cr>')
 			nnoremap('<leader>ft', '<cmd>RustTest<cr>')
+			nnoremap('go', '<cmd>RustOpenExternalDocs<cr>')
 		end,
 		ft = "rust" },
 }
