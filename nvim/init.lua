@@ -109,6 +109,11 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 	callback = function() vim.bo.filetype = "log" end,
 })
 
+-- Autocmd to undo folds by default
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+	callback = function() o.foldlevel = 99 end
+})
+
 -- Get rid of search highlighting
 nnoremap('<leader>c', ":nohl<CR>")
 
