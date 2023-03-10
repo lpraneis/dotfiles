@@ -101,8 +101,7 @@ o.foldmethod = 'expr'
 -- Use treesitter for fold expressions
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- Colorscheme
-vim.g.base16colorspace = 256
+-- vim.g.base16colorspace = 256
 
 -- Autocmd to set *.log files to type log
 vim.api.nvim_create_autocmd({ "BufRead" }, {
@@ -137,3 +136,6 @@ vim.opt.list = true
 -- LSP Plugin Configs --
 -----------------------
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+
+-- -- Colorscheme
+vim.cmd [[colorscheme kanagawa]]
