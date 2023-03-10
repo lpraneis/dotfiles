@@ -128,6 +128,9 @@ return {
 							checkOnSave = {
 								command = "clippy"
 							},
+							procMacro = {
+								enable = true
+							},
 
 							--  kind of annoying, but I can't find another way for rust lsp to work cross-target,
 							--  so manually switch here if you want actual lsp context

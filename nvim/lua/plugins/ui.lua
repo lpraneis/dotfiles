@@ -102,4 +102,5 @@ return {
 	},
 	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", config = true },
 	{ 'TimUntersberger/neogit',   dependencies = 'nvim-lua/plenary.nvim', config = true },
+	{ 'sindrets/diffview.nvim',   dependencies = 'nvim-lua/plenary.nvim', config = true },
 }
