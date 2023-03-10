@@ -75,6 +75,8 @@ o.termguicolors = true
 o.splitbelow = true
 o.splitright = true
 
+vim.opt.fillchars:append { diff = "╱" }
+
 -- Persistent undos
 o.undofile = true
 if sys.is_linux or sys.is_macos then
