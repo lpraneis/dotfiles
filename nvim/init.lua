@@ -82,7 +82,7 @@ o.undofile = true
 if sys.is_linux or sys.is_macos then
 	o.undodir = os.getenv('HOME') .. '/.nvim/undo-dir'
 elseif sys.is_windows then
-	o.undodir = fn.stdpath('data') .. '\\undo-dir'
+	o.undodir = vim.fn.stdpath('data') .. '\\undo-dir'
 end
 
 -- Keep undo history across sessions by storing it in a file
