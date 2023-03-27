@@ -35,6 +35,9 @@ alias cat=bat
 alias nfzf="fzf | xargs -o nvim"
 alias ls=exa
 
+# `t` will try and attach to a session or create a new one if no session exists
+alias t="tmux attach || tmux"
+
 # Use fd by default ( with colors ) 
 export FZF_DEFAULT_COMMAND="fd --type file --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
@@ -78,3 +81,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Created by `userpath` on 2022-07-12 14:14:25
 export PATH="$PATH:/home/lpraneis/.local/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
