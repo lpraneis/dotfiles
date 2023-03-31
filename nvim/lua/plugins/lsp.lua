@@ -2,7 +2,6 @@ return {
 	{ 'lukas-reineke/lsp-format.nvim',       config = true },
 	{
 		'neovim/nvim-lspconfig',
-		lazy = true,
 		dependencies = {
 			-- mason helps auto-install unimportant LSP
 			{ "williamboman/mason.nvim",           config = true },
