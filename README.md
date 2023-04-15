@@ -5,6 +5,7 @@
 ### Installation
 - Clone this repo to ~/tools/dotfiles
 - Install the following:
+
 | Package       | Install Location                                       | Description               |
 | ----------    | ---------------                                        | ----------                |
 | rustup        | [rustup.rs](https://rustup.rs/)                        | rust toolchain            |
