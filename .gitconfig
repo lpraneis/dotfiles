@@ -14,6 +14,9 @@
 	show-merge = "!f(){ merge_commit=${1:?Merge commit not provided}; git log --pretty=oneline $1^..$1 --abbrev-commit; };f"
 	# View what commits were merged as part of a merge commit, with graph and fancier merge-base
 	log-merge = "!f(){ merge=${1:?Merge commit not provided}; parents=$(git log $merge --pretty=format:%P -1); base=$(git merge-base --octopus $parents); shift 1; other_args=$@; git log --graph $base..$merge $other_args; };f"
+	# Simple git log
+	lg = log --graph --abbrev-commit --oneline
+
 
 
 [core]

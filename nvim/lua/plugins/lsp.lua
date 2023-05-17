@@ -5,7 +5,7 @@ return {
 		dependencies = {
 			-- mason helps auto-install unimportant LSP
 			{ "williamboman/mason.nvim",           config = true },
-			{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = { "lua_ls", "yamlls", "gopls" } } },
+			{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = { "lua_ls", "yamlls", "gopls", "pyright" } } },
 			{ 'SmiteshP/nvim-navic' },
 			{ 'lukas-reineke/lsp-format.nvim' }
 		},
@@ -37,6 +37,11 @@ return {
 
 			-- YAML language server
 			require 'lspconfig'.yamlls.setup {
+				on_attach = on_attach
+			}
+
+			-- Python language server
+			require 'lspconfig'.pyright.setup {
 				on_attach = on_attach
 			}
 

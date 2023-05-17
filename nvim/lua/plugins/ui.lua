@@ -91,7 +91,7 @@ return {
 				options = { theme = 'onedark' },
 				extensions = { 'nvim-tree' },
 				sections = {
-					lualine_c = { 'filename', { navic.get_location, cond = navic.is_available } },
+					lualine_c = { "navic" },
 				},
 			})
 		end },

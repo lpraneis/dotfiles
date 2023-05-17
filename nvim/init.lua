@@ -23,36 +23,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Use lua/plugins/*.lua to split up plugin load
-require('lazy').setup("plugins",
-	{
-		-- simplify some of the icons
-		ui = {
-			icons = {
-				cmd = "",
-				config = "",
-				event = "",
-				ft = " ",
-				init = " ",
-				import = " ",
-				keys = " ",
-				lazy = "",
-				loaded = "●",
-				not_loaded = "○",
-				plugin = " ",
-				runtime = " ",
-				source = " ",
-				start = "➜",
-				task = "✔ ",
-				list = {
-					"●",
-					"➜",
-					"★",
-					"‒",
-				},
-			},
-		}
-	}
-)
+require('lazy').setup("plugins")
 
 -- Global vim settings
 o.autoindent = true
