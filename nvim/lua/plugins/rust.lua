@@ -3,7 +3,8 @@ local nnoremap = require 'maps'.nnoremap
 return {
 	{ 'rust-lang/rust.vim',    lazy = true, ft = "rust" },
 	{ 'mfussenegger/nvim-dap', lazy = true, ft = "rust" },
-	{ "rcarriga/nvim-dap-ui",
+	{
+		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
 			require("dapui").setup({
@@ -78,8 +79,11 @@ return {
 				vim.api.nvim_del_keymap("n", "V")
 				dapui.close()
 			end
-		end, ft = "rust" },
-	{ 'simrat39/rust-tools.nvim',
+		end,
+		ft = "rust"
+	},
+	{
+		'simrat39/rust-tools.nvim',
 		dependencies = { 'SmiteshP/nvim-navic', 'lukas-reineke/lsp-format.nvim' },
 		config = function()
 			local on_attach = function(client, bufnr)
@@ -155,5 +159,6 @@ return {
 			nnoremap('<leader>ft', '<cmd>RustTest<cr>')
 			nnoremap('go', '<cmd>RustOpenExternalDocs<cr>')
 		end,
-		ft = "rust" },
+		ft = "rust"
+	},
 }

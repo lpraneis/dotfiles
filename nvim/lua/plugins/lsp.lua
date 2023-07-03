@@ -4,8 +4,12 @@ return {
 		'neovim/nvim-lspconfig',
 		dependencies = {
 			-- mason helps auto-install unimportant LSP
-			{ "williamboman/mason.nvim",           config = true },
-			{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = { "lua_ls", "yamlls", "gopls", "pyright" } } },
+			{ "williamboman/mason.nvim",      config = true },
+			{
+				"williamboman/mason-lspconfig.nvim",
+				opts = {
+					ensure_installed = { "lua_ls", "yamlls", "gopls", "pyright", "powershell_es" } }
+			},
 			{ 'SmiteshP/nvim-navic' },
 			{ 'lukas-reineke/lsp-format.nvim' }
 		},
@@ -37,6 +41,11 @@ return {
 
 			-- YAML language server
 			require 'lspconfig'.yamlls.setup {
+				on_attach = on_attach
+			}
+
+			-- Powershell language server
+			require 'lspconfig'.powershell_es.setup {
 				on_attach = on_attach
 			}
 
@@ -76,7 +85,8 @@ return {
 	{ 'hrsh7th/cmp-path',                    branch = 'main' },
 	{ 'hrsh7th/cmp-cmdline',                 branch = 'main' },
 	{
-		'hrsh7th/nvim-cmp', branch = 'main',
+		'hrsh7th/nvim-cmp',
+		branch = 'main',
 		dependencies = 'L3MON4D3/LuaSnip',
 		config = function()
 			local luasnip = require 'luasnip'
@@ -93,7 +103,7 @@ return {
 					-- Add tab support
 					['<S-Tab>'] = cmp.mapping.select_prev_item(),
 					['<Tab>'] = cmp.mapping.select_next_item(),
-					['<C-S-f>'] = cmp.mapping.scroll_docs( -4),
+					['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
 					['<C-f>'] = cmp.mapping.scroll_docs(4),
 					['<C-Space>'] = cmp.mapping.complete(),
 					['<C-e>'] = cmp.mapping.close(),

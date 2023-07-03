@@ -1,7 +1,8 @@
 local nnoremap = require 'maps'.nnoremap
 
 return {
-	{ 'nvim-telescope/telescope.nvim',
+	{
+		'nvim-telescope/telescope.nvim',
 		dependencies = { "nvim-telescope/telescope-ui-select.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
 			require('telescope').setup {
@@ -49,5 +50,6 @@ return {
 			nnoremap('gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
 			nnoremap('gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>')
 			nnoremap('gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
-		end },
+		end
+	},
 }
