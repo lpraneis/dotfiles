@@ -35,7 +35,7 @@ output DP-4 resolution 1920x1080 position 1920,0 scale 1
 output DP-5 resolution 1920x1200 position 3840,0 scale 1
 
 # Color shift to 5000K
-exec gammastep -l 44.9:-93.2 -t 5000:5000 -m wayland
+exec gammastep -P -O 5000
 
 # Mako notification
 exec /usr/local/bin/mako
