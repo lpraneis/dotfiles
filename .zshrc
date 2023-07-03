@@ -26,6 +26,7 @@ alias ll="ls --color=always -lh"
 alias vim="nvim"
 alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
 alias nvimconfig="nvim ~/tools/dotfiles/nvim/init.lua"
+alias update-ra="tmux split-window -v \"cd /home/lpraneis/tools/rust-analyzer; git fetch --prune; git checkout origin/release ; cargo xtask install --server\""
 
 # Source some device-specific options
 [ -f "$HOME/.zshrc-specific" ] && source ~/.zshrc-specific
