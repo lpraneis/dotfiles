@@ -110,7 +110,7 @@ return {
 			end
 
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			local dap_extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
+			local dap_extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/'
 			local dap_codelldb_path = dap_extension_path .. 'adapter/codelldb'
 			local dap_liblldb_path = dap_extension_path .. 'lldb/lib/liblldb.so'
 
