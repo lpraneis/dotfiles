@@ -37,6 +37,7 @@ return {
 				}
 			}
 			require('telescope').load_extension('ui-select')
+			require('telescope').load_extension('luasnip')
 			nnoremap('<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
 			nnoremap('<leader>fs', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 			nnoremap('<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
@@ -52,4 +53,8 @@ return {
 			nnoremap('gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
 		end
 	},
+	{
+		"benfowler/telescope-luasnip.nvim",
+		module = "telescope._extensions.luasnip", -- if you wish to lazy-load
+	}
 }
