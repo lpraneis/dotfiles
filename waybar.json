@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["custom/clock"],
+    "modules-center": ["custom/clock", "custom/clock-utc"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature",  "battery"],
     // Modules configuration
     // "sway/workspaces": {
@@ -114,7 +114,11 @@
         "on-click": "pavucontrol"
     },
 			"custom/clock": {
-        "exec": "date +'%Y-%m-%d   %H:%M'",
+        "exec": "date +'%Y-%m-%d   %H:%M %Z'",
+        "interval": 5
+    },
+			"custom/clock-utc": {
+        "exec": "date -u +' - %H:%M UTC'",
         "interval": 5
     },
 }
