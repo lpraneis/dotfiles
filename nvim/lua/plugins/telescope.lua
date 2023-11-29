@@ -39,6 +39,7 @@ return {
 			require('telescope').load_extension('ui-select')
 			require('telescope').load_extension('luasnip')
 			nnoremap('<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
+			nnoremap('<leader>fr', '<cmd>lua require("telescope.builtin").resume()<cr>')
 			nnoremap('<leader>fs', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 			nnoremap('<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 			nnoremap('<leader>fd', '<cmd>lua require("telescope.builtin").diagnostics()<cr>')
