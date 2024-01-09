@@ -64,6 +64,9 @@ return {
 					},
 					Dockerfile = {
 						icon = "",
+					},
+					toml = {
+						icon = ""
 					}
 				}
 			}
