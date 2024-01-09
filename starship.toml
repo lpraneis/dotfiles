@@ -1,10 +1,22 @@
 [rust]
 disabled = true
+
 [status]
 disabled = false
+
 [package]
 disabled = true
+
 [c]
 disabled = true
+
 [nodejs]
 disabled = true
+
+[git_commit]
+only_detached = false
+commit_hash_length = 7
+tag_disabled = false
+
+[git_metrics]
+disabled = false

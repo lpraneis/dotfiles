@@ -1,6 +1,7 @@
 # starship
 eval "$(starship init zsh)"
 
+
 # history file config
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
@@ -67,10 +68,12 @@ bindkey -e
 # Go path
 export PATH="$PATH:/usr/local/go/bin"
 
-# Hacks for screen sharing on sway wayland
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_TYPE=wayland
-systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+if [[ "$(uname)" == "Linux" ]]; then
+	# Hacks for screen sharing on sway wayland
+	export XDG_CURRENT_DESKTOP=sway
+	export XDG_SESSION_TYPE=wayland
+	systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
