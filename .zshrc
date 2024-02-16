@@ -65,6 +65,10 @@ export PATH="$PATH:$HOME/bin"
 export EDITOR="nvim"
 bindkey -e
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # Go path
 export PATH="$PATH:/usr/local/go/bin"
 

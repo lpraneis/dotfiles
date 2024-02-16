@@ -16,6 +16,10 @@
 	log-merge = "!f(){ merge=${1:?Merge commit not provided}; parents=$(git log $merge --pretty=format:%P -1); base=$(git merge-base --octopus $parents); shift 1; other_args=$@; git log --graph $base..$merge $other_args; };f"
 	# Simple git log
 	lg = log --graph --abbrev-commit --oneline
+	# Run git-absorb to automatically add fixup commits
+	absorb = "git-absorb"
+	# Safer push -f
+	pushf = "push --force-with-lease --force-if-includes"
 
 
 
@@ -40,3 +44,6 @@
 
 [pull]
 	rebase = false
+
+[absorb]
+	maxStack=50
