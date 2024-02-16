@@ -24,26 +24,49 @@
 
 
 [core]
+	# set delta as a default pager
 	pager = delta
+	# set nvim as a default editor
 	editor = nvim
 
 [interactive]
 	diffFilter = delta --color-only
 
 [delta]
-	navigate = true  # use n and N to move between diff sections
+	# use n and N to move between diff sections
+	navigate = true 
 
 [merge]
 	conflictstyle = diff3
 
 [diff]
+	algorithm = histogram
 	colorMoved = default
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
 
 [log]
 	date = local
 
-[pull]
-	rebase = false
+[rebase]
+	autosquash = true
 
 [absorb]
 	maxStack=50
+
+[init]
+	defaultBranch = main
+
+[commit]
+	verbose = true
+
+[rerere]
+	enabled = true
