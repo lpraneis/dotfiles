@@ -91,3 +91,5 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:/home/lpraneis/.local/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(atuin init zsh)"
