@@ -50,6 +50,11 @@ function screenshot() {
 	echo "Screenshot saved to clipboard"
 }
 
+function review-pr() {
+	merge_base=${1:-"main"}
+	nvim -c "DiffviewOpen $(git merge-base HEAD $merge_base)"
+}
+
 # Clean up branches that are deleted from remote
 function cleanup-local-branches() {
     branches=$(git branch -vv | grep ': gone]'| grep -v '\*'| awk '{print $1; }')

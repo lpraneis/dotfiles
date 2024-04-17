@@ -9,7 +9,7 @@
 	# Open a diff in nvim diffview
 	dt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
 	# Open PR in nvim diffview
-	pr = "!f(){ branch=${1:-$(git branch --show-current)}; target=${2:-origin/master}; nvim -c \"DiffviewOpen $target...$branch\"; };f"
+	pr = "!f(){ branch=${1:-$(git branch --show-current)}; target=${2:-origin/main}; nvim -c \"DiffviewOpen $target...$branch\"; };f"
 	# View what commits were merged as part of a merge commit
 	show-merge = "!f(){ merge_commit=${1:?Merge commit not provided}; git log --pretty=oneline $1^..$1 --abbrev-commit; };f"
 	# View what commits were merged as part of a merge commit, with graph and fancier merge-base
@@ -20,6 +20,9 @@
 	absorb = "git-absorb"
 	# Safer push -f
 	pushf = "push --force-with-lease --force-if-includes"
+	# View recent branches with ahead, behind, committer, date, commit message
+	# git lastb <branch (default origin/main)> <num (default 10)>
+	lastb = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-10} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/main}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\n\" && cat) | column -ts'|';}; r"
 
 
 
