@@ -121,13 +121,36 @@ return {
 	'yamatsum/nvim-cursorline',
 	{
 		"folke/trouble.nvim",
+		branch = "dev",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("trouble").setup {}
-			vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-			vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-			vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-		end
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xe",
+				"<cmd>Trouble diagnostics filter.severity=vim.diagnostic.severity.ERROR<cr>",
+				desc = "ERROR Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
+		opts = {},
 	},
 	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", config = true },
 	{ 'NeogitOrg/neogit',         dependencies = 'nvim-lua/plenary.nvim', config = true },
