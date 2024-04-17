@@ -124,9 +124,9 @@ return {
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("trouble").setup {}
-			vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
-				{ silent = true, noremap = true }
-			)
+			vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+			vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+			vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
 		end
 	},
 	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", config = true },

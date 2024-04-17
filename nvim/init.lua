@@ -22,6 +22,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 -- Use lua/plugins/*.lua to split up plugin load
 require('lazy').setup("plugins")
 
@@ -62,6 +63,10 @@ if fs.does_not_exist(o.undodir) and (sys.is_linux or sys.is_macos) then
 elseif fs.does_not_exist(o.undodir) and sys.is_windows then
 	os.execute('mkdir ' .. o.undodir)
 end
+
+
+-- pythnon venv
+vim.g.python3_host_prog = os.getenv('HOME') .. '/venvs/neovim/python3'
 
 -- Window Local
 wo.number = true

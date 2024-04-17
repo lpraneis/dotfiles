@@ -5,11 +5,16 @@ return {
 		'nvim-telescope/telescope.nvim',
 		dependencies = { "nvim-telescope/telescope-ui-select.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
+			local trouble = require("trouble.providers.telescope")
 			require('telescope').setup {
 				defaults = {
 					mappings = {
 						i = {
-							["<C-h>"] = "which_key"
+							["<c-h>"] = "which_key",
+							["<c-t>"] = trouble.open_with_trouble
+						},
+						n = {
+							["<c-t>"] = trouble.open_with_trouble,
 						}
 					},
 				},
