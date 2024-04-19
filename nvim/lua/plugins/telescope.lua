@@ -50,13 +50,9 @@ return {
 			nnoremap('<leader>fd', '<cmd>lua require("telescope.builtin").diagnostics()<cr>')
 			nnoremap('<leader>fl', '<cmd>lua require("telescope.builtin").loclist()<cr>')
 			nnoremap('<leader>fc', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<cr>')
-			nnoremap('<leader>fw', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<cr>')
 			nnoremap('<leader>fgc', '<cmd>lua require("telescope.builtin").git_commits()<cr>')
 			nnoremap('<leader>fgs', '<cmd>lua require("telescope.builtin").git_status()<cr>')
 			nnoremap('<leader>fgb', '<cmd>lua require("telescope.builtin").git_bcommits()<cr>')
-			nnoremap('gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
-			nnoremap('gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>')
-			nnoremap('gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
 		end
 	},
 	{
