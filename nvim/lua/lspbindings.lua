@@ -1,11 +1,8 @@
 local lsp_on_attach = function(client, bufnr)
 	require 'nvim-navic'.attach(client, bufnr)
 	require "lsp-format".on_attach(client)
-	require "lsp-inlayhints".on_attach(client, bufnr)
 
 	vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-	vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 	vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 end
 
@@ -16,9 +13,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local tele = require("telescope.builtin")
 
 
-		-- Signature help + Hover
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+		-- Signature help
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+		-- Toggle Inlay Hints ( off by default )
+		vim.keymap.set('n', '<space>i', function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, opts)
 
 		-- goto
 		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)

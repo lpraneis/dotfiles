@@ -2,12 +2,6 @@ local lsp_on_attach = require("lspbindings").lsp_on_attach
 return {
 	{ 'lukas-reineke/lsp-format.nvim',       config = true },
 	{
-		'lvimuser/lsp-inlayhints.nvim',
-		config = function()
-			require("lsp-inlayhints").setup({ inlay_hints = { highlight = "Comment" } })
-		end
-	},
-	{
 		'neovim/nvim-lspconfig',
 		dependencies = {
 			-- mason helps auto-install unimportant LSP
@@ -19,7 +13,6 @@ return {
 			},
 			{ 'SmiteshP/nvim-navic' },
 			{ 'lukas-reineke/lsp-format.nvim' },
-			{ 'lvimuser/lsp-inlayhints.nvim' }
 		},
 		config = function()
 			-- Go language server

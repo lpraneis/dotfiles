@@ -42,7 +42,6 @@ return {
 			})
 		end
 	},
-	{ 'numToStr/Comment.nvim',     config = true },
 	{
 		'lukas-reineke/indent-blankline.nvim',
 		main = "ibl",
