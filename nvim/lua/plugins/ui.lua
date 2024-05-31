@@ -121,7 +121,6 @@ return {
 	'yamatsum/nvim-cursorline',
 	{
 		"folke/trouble.nvim",
-		branch = "dev",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		keys = {
 			{
