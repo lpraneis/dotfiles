@@ -23,6 +23,10 @@
 	# View recent branches with ahead, behind, committer, date, commit message
 	# git lastb <branch (default origin/main)> <num (default 10)>
 	lastb = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-10} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/main}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\n\" && cat) | column -ts'|';}; r"
+	# `git dlog` to show `git log -p` with difftastic.
+	dlog = "log -p --ext-diff"
+	# `git dshow` to show `git show` with difftastic.
+	dshow = "show --ext-diff"
 
 
 
@@ -46,6 +50,7 @@
 	algorithm = histogram
 	colorMoved = default
 	tool = difftastic
+	external = difft
 
 [difftool]
 	prompt = false
