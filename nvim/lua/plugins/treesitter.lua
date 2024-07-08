@@ -22,7 +22,7 @@ return {
 				ensure_installed = { "rust", "c", "markdown", "markdown_inline",
 					"lua", "html", "http", "json", "json5", "latex",
 					"llvm", "make",
-					"regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go" },
+					"regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go", "vim", "vimdoc", "query" },
 				highlight = {
 					enable = true,
 				},
