@@ -10,6 +10,9 @@ disabled = true
 [c]
 disabled = true
 
+[python]
+format = 'py [(\($virtualenv\) )]($style)'
+
 [nodejs]
 disabled = true
 

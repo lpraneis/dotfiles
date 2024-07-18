@@ -9,7 +9,7 @@
 	# Open a diff in nvim diffview
 	dt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
 	# Open PR in nvim diffview
-	pr = "!f(){ branch=${1:-$(git branch --show-current)}; target=${2:-origin/main}; nvim -c \"DiffviewOpen $target...$branch\"; };f"
+	pr = "!f(){ branch=${1:-$(git branch --show-current)}; target=${2:-origin/main}; nvim -c \"DiffviewOpen $target...$branch --imply-local\"; };f"
 	# View what commits were merged as part of a merge commit
 	show-merge = "!f(){ merge_commit=${1:?Merge commit not provided}; git log --pretty=oneline $1^..$1 --abbrev-commit; };f"
 	# View what commits were merged as part of a merge commit, with graph and fancier merge-base
