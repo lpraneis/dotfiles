@@ -46,6 +46,7 @@ o.tabstop = 2
 o.termguicolors = true
 o.splitbelow = true
 o.splitright = true
+o.swapfile = false
 
 vim.opt.fillchars:append { diff = "╱" }
 

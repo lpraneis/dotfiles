@@ -148,6 +148,21 @@ return {
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},
+			{
+				"<leader>xi",
+				"<cmd>Trouble lsp_implementations toggle<cr>",
+				desc = "LSP Implementations List (Trouble)",
+			},
+			{
+				"<leader>xc",
+				"<cmd>Trouble toggle lsp_incoming_calls<cr>",
+				desc = "LSP Callers (Trouble)",
+			},
+			{
+				"<leader>xr",
+				"<cmd>Trouble toggle lsp_references<cr>",
+				desc = "LSP References (Trouble)",
+			},
 		},
 		opts = {},
 	},
