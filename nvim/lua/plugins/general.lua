@@ -61,4 +61,11 @@ return {
 	'qpkorr/vim-bufkill',
 	{ 'kevinhwang91/nvim-hlslens', branch = 'main' },
 	{ 'kylechui/nvim-surround',    config = true },
+	{
+		'MagicDuck/grug-far.nvim',
+		config = function()
+			require('grug-far').setup({});
+		end
+	},
+
 }

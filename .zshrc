@@ -29,6 +29,9 @@ alias lspconfig="nvim ~/tools/dotfiles/nvim/lua/lsp.lua"
 alias nvimconfig="nvim ~/tools/dotfiles/nvim/init.lua"
 alias update-ra="tmux split-window -v \"cd /home/lpraneis/tools/rust-analyzer; git fetch --prune; git checkout origin/release ; cargo xtask install --server\""
 
+function git() { git-branchless wrap -- "$@" }
+
+
 # Source some device-specific options
 [ -f "$HOME/.zshrc-specific" ] && source ~/.zshrc-specific
 
@@ -98,3 +101,17 @@ export PATH="$PATH:/home/lpraneis/.local/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(atuin init zsh)"
+
+. "$HOME/.atuin/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+# bun completions
+[ -s "/home/lpraneis/.bun/_bun" ] && source "/home/lpraneis/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select
