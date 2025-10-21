@@ -27,6 +27,10 @@
 	dlog = "log -p --ext-diff"
 	# `git dshow` to show `git show` with difftastic.
 	dshow = "show --ext-diff"
+	# Find the oldest ancestor commit between two branches that have lots of merges back and forth
+	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-main}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	# Hard reset to origin/<this branch>
+	reset-origin = "!r(){ git fetch; git reset --hard origin/$(git branch --show-current); }; r"
 
 
 

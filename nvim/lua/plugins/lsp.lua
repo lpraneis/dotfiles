@@ -16,27 +16,27 @@ return {
 		},
 		config = function()
 			-- Go language server
-			require 'lspconfig'.gopls.setup {
+			vim.lsp.config('gopls', {
 				on_attach = lsp_on_attach
-			}
+			})
 
 			-- YAML language server
-			require 'lspconfig'.yamlls.setup {
+			vim.lsp.config('yamlls', {
 				on_attach = lsp_on_attach
-			}
+			})
 
 			-- Powershell language server
-			require 'lspconfig'.powershell_es.setup {
+			vim.lsp.config('powershell_es', {
 				on_attach = lsp_on_attach
-			}
+			})
 
 			-- Python language server
-			require 'lspconfig'.pyright.setup {
+			vim.lsp.config('pyright', {
 				on_attach = lsp_on_attach
-			}
+			})
 
 			-- lua language server
-			require 'lspconfig'.lua_ls.setup {
+			vim.lsp.config('lua_ls', {
 				on_attach = lsp_on_attach,
 				settings = {
 					Lua = {
@@ -57,7 +57,7 @@ return {
 						},
 					},
 				},
-			}
+			})
 		end
 	},
 	{ 'hrsh7th/cmp-nvim-lsp',                branch = 'main' },
