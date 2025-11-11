@@ -35,7 +35,7 @@ return {
 	},
 	{
 		'mrcjkb/rustaceanvim',
-		version = '^4', -- Recommended
+		version = '^6', -- Recommended
 		lazy = false, -- This plugin is already lazy
 		init = function()
 			--
@@ -67,8 +67,10 @@ return {
 						-- rust-analyzer language server configuration
 						-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 						['rust-analyzer'] = {
-							checkOnSave = {
-								command = "clippy"
+							checkOnSave = true,
+							check = {
+								allTargets = false,
+								-- allTargets = true,
 							},
 							procMacro = {
 								enable = true

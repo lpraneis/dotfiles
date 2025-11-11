@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 config.font = wezterm.font('Berkeley Mono', { stretch = 'SemiCondensed' })
-config.font_size = 9
+config.font_size = 13
 config.use_fancy_tab_bar = false
 config.show_tabs_in_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false

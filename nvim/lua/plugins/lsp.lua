@@ -1,6 +1,11 @@
 local lsp_on_attach = require("lspbindings").lsp_on_attach
 return {
-	{ 'lukas-reineke/lsp-format.nvim',       config = true },
+	{
+		'lukas-reineke/lsp-format.nvim',
+		config = function()
+			require('lsp-format').setup({ typescript = { exclude = { "ts_ls" } }, })
+		end
+	},
 	{
 		'neovim/nvim-lspconfig',
 		dependencies = {
@@ -19,6 +24,12 @@ return {
 			vim.lsp.config('gopls', {
 				on_attach = lsp_on_attach
 			})
+
+			-- Typescript language server
+			vim.lsp.config('ts_ls', {
+				on_attach = lsp_on_attach
+			})
+
 
 			-- YAML language server
 			vim.lsp.config('yamlls', {

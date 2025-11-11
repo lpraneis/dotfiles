@@ -44,14 +44,6 @@ return {
 		end
 	},
 	{
-		'nvim-tree/nvim-tree.lua',
-		config = function()
-			require('nvim-tree').setup()
-			nnoremap('<C-n>', ':NvimTreeToggle<CR>')
-			nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
-		end
-	},
-	{
 		'nvim-tree/nvim-web-devicons',
 		config = function()
 			require('nvim-web-devicons').setup {
@@ -76,15 +68,7 @@ return {
 		'noib3/nvim-cokeline',
 		config = function()
 			require('cokeline').setup({
-				sidebar = {
-					filetype = 'NvimTree',
-					components = {
-						{
-							text = '  NvimTree',
-							style = 'bold',
-						},
-					}
-				},
+				sidebar = {},
 			})
 			vim.api.nvim_set_keymap('n', 'H', '<Plug>(cokeline-focus-prev)', { silent = true })
 			vim.api.nvim_set_keymap('n', 'L', '<Plug>(cokeline-focus-next)', { silent = true })
@@ -97,7 +81,6 @@ return {
 			local navic = require('nvim-navic')
 			require('lualine').setup({
 				options = { theme = 'onedark' },
-				extensions = { 'nvim-tree' },
 				sections = {
 					lualine_c = { "navic" },
 				},
@@ -165,6 +148,26 @@ return {
 			},
 		},
 		opts = {},
+		specs = {
+			"folke/snacks.nvim",
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("force", opts or {}, {
+					picker = {
+						actions = require("trouble.sources.snacks").actions,
+						win = {
+							input = {
+								keys = {
+									["<c-t>"] = {
+										"trouble_open",
+										mode = { "n", "i" },
+									},
+								},
+							},
+						},
+					},
+				})
+			end,
+		},
 	},
 	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", config = true },
 	{ 'NeogitOrg/neogit',         dependencies = 'nvim-lua/plenary.nvim', config = true },
