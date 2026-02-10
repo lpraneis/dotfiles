@@ -11,5 +11,6 @@ config.colors = {
 	background = '#121212'
 }
 config.color_scheme = 'Kanagawa (Gogh)'
+config.audible_bell = "Disabled"
 
 return config

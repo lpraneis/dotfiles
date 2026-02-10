@@ -97,6 +97,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Created by `userpath` on 2022-07-12 14:14:25
 export PATH="$PATH:/home/lpraneis/.local/bin"
+export PATH="$PATH:/home/lpraneis/.atuin/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -115,3 +116,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 zstyle ':completion:*' menu select
+
+# opencode
+export PATH=/home/lpraneis/.opencode/bin:$PATH
