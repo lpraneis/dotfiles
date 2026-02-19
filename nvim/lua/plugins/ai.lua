@@ -1,69 +1,72 @@
 return {
 	{
-		"folke/sidekick.nvim",
-		branch = "main",
+		"nickjvandyke/opencode.nvim",
+		version = "*",
 		lazy = false,
-		opts = {
-			nes = { enabled = false },
-			cli = {
-				mux = {
-					backend = "tmux",
-					enabled = true,
+		dependencies = {
+			{
+				"folke/snacks.nvim",
+				optional = true,
+				opts = {
+					input = {},
+					picker = {
+						actions = {
+							opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
+						},
+						win = {
+							input = {
+								keys = {
+									["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+								},
+							},
+						},
+					},
+					terminal = {},
 				},
 			},
 		},
-		keys = {
-			{
-				"<c-.>",
-				function() require("sidekick.cli").toggle() end,
-				desc = "Sidekick Toggle",
-				mode = { "n", "t", "i", "x" },
-			},
-			{
-				"<leader>aa",
-				function() require("sidekick.cli").toggle() end,
-				desc = "Sidekick Toggle CLI",
-			},
-			{
-				"<leader>as",
-				function() require("sidekick.cli").select() end,
-				-- Or to select only installed tools:
-				-- require("sidekick.cli").select({ filter = { installed = true } })
-				desc = "Select CLI",
-			},
-			{
-				"<leader>ad",
-				function() require("sidekick.cli").close() end,
-				desc = "Detach a CLI Session",
-			},
-			{
-				"<leader>at",
-				function() require("sidekick.cli").send({ msg = "{this}" }) end,
-				mode = { "x", "n" },
-				desc = "Send This",
-			},
-			{
-				"<leader>af",
-				function() require("sidekick.cli").send({ msg = "{file}" }) end,
-				desc = "Send File",
-			},
-			{
-				"<leader>av",
-				function() require("sidekick.cli").send({ msg = "{selection}" }) end,
-				mode = { "x" },
-				desc = "Send Visual Selection",
-			},
-			{
-				"<leader>ap",
-				function() require("sidekick.cli").prompt() end,
-				mode = { "n", "x" },
-				desc = "Sidekick Select Prompt",
-			},
-			{
-				"<leader>ao",
-				function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end,
-				desc = "Sidekick Toggle Opencode",
-			},
-		},
-	}
+		config = function()
+			---@type opencode.Opts
+			vim.g.opencode_opts = {
+				provider = {
+					enabled = "tmux",
+				},
+			}
+
+			vim.o.autoread = true
+
+			-- <C-.> Toggle opencode (same as sidekick toggle)
+			vim.keymap.set({ "n", "t", "i", "x" }, "<C-.>", function() require("opencode").toggle() end,
+				{ desc = "Toggle Opencode" })
+
+			-- <leader>aa Toggle opencode CLI
+			vim.keymap.set("n", "<leader>aa", function() require("opencode").toggle() end, { desc = "Opencode Toggle" })
+
+			-- <leader>as Select action (prompts, commands, provider controls)
+			vim.keymap.set("n", "<leader>as", function() require("opencode").select() end, { desc = "Opencode Select" })
+
+			-- <leader>ad Detach / stop the opencode session
+			vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.interrupt") end,
+				{ desc = "Opencode Interrupt Session" })
+
+			-- <leader>at Send this (range/selection/cursor position)
+			vim.keymap.set({ "x", "n" }, "<leader>at", function() require("opencode").ask("@this: ", { submit = true }) end,
+				{ desc = "Opencode Send This" })
+
+			-- <leader>af Send file/buffer
+			vim.keymap.set("n", "<leader>af", function() require("opencode").ask("@buffer: ", { submit = true }) end,
+				{ desc = "Opencode Send File" })
+
+			-- <leader>av Send visual selection
+			vim.keymap.set("x", "<leader>av", function() require("opencode").ask("@this: ", { submit = true }) end,
+				{ desc = "Opencode Send Selection" })
+
+			-- <leader>ap Select prompt
+			vim.keymap.set({ "n", "x" }, "<leader>ap", function() require("opencode").select() end,
+				{ desc = "Opencode Select Prompt" })
+
+			-- <leader>ao Toggle opencode (focused)
+			vim.keymap.set("n", "<leader>ao", function() require("opencode").toggle() end, { desc = "Opencode Toggle (Focus)" })
+		end,
+	},
 }
