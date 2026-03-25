@@ -30,7 +30,7 @@ return {
 				"lua", "html", "http", "json", "json5", "latex",
 				"llvm", "make",
 				"regex", "toml", "yaml", "comment", "dockerfile", "tracinglog", "go", "vim", "vimdoc", "query" }
-			require("nvim-treesitter").install(ensure_installed)
+			require("nvim-treesitter.install").ensure_installed(ensure_installed)
 		end
 	},
 	{

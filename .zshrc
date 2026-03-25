@@ -96,8 +96,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Created by `userpath` on 2022-07-12 14:14:25
-export PATH="$PATH:/home/lpraneis/.local/bin"
-export PATH="$PATH:/home/lpraneis/.atuin/bin"
+export PATH="$PATH:/$HOME/.local/bin"
+export PATH="$PATH:/$HOME/.atuin/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -107,7 +107,7 @@ eval "$(atuin init zsh)"
 eval "$(uv generate-shell-completion zsh)"
 
 # bun completions
-[ -s "/home/lpraneis/.bun/_bun" ] && source "/home/lpraneis/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -118,4 +118,4 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 zstyle ':completion:*' menu select
 
 # opencode
-export PATH=/home/lpraneis/.opencode/bin:$PATH
+export PATH=/$HOME/.opencode/bin:$PATH
